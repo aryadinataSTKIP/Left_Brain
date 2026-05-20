@@ -23,6 +23,20 @@
         h2 {
             font-size: 24px;
         }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        .search-input::placeholder {
+            color: #999;
+        }
         .book {
             display: flex;
             justify-content: space-between;
@@ -32,6 +46,9 @@
         }
         .book:last-child {
             border-bottom: none;
+        }
+        .book.hidden {
+            display: none;
         }
         button {
             background-color: #ffcc00;
@@ -46,363 +63,167 @@
         button:hover {
             background-color: #e6b800;
         }
+        .no-results {
+            padding: 20px;
+            text-align: center;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <div class="book-container">
         <h2>📚 Explore Our Books</h2>
-        <div class="book">
-            <span>The Richest Man in Babylon (PDF)</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1ExF2Prf6sKpR5xWvV8Jjk8MED7K9Bs6d/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Rich Dad Poor Dad</span>
-            <button onclick="window.open('https://drive.google.com/file/d/12Ul88vEcSpJy_jfXsEQ4Jn34un58bxCY/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Cashflow Quadrant</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1ViBaJd4bwW6wjmYS2dIK8LpM8Yw8_Wii/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Know The Only Truth</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1L_f0HfsMdzSfwDHHSIhSmgGOw61VVAH9/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Think and Grow Rich</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1hNK4J4WSDXfLdiIMfRLk41nkP6m0FdqA/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Rich Dad Poor Dad for Teens</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1JQd7EX2e2D_3VQnVFeuPWder-Z_UhUeB/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Rich Dad's Rich Kid Smart Kid</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1GYWiy_xFkA5wceCCfZTl6rXVyjOMO1dc/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Why We Want You To Be Rich</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1rTpcsuARzCszNUkVuTyCs_FLfIBAHXfT/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Unfair Advantage</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1km0SNqU2-DEAed0AI-lGEx4dVSv2dETu/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Way of the Superior Man</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1LAYA5np0lnF0MFrvUp06uYlZICGasWW0/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>The Psychology Of Money</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1b1pWqEvN9MlfEwmrp357rOb8jqW42O6V/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>The Let Them Theory</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1kypzgIvZjn8tQ5OIQiXSjTmw0JzW8XAe/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>Thinking Fast and Slow</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1a65Wk71wpIXzZRbVhe_cLFqjfMqAPqo5/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>The Bitcoin Standard</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1Ne38JzkMchSbtUp8N28FC8ILKyzzy2L2/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Richest Man Who Have Ever Lived</span>
-            <button onclick="window.open('https://archive.org/details/richestmanwhoeve0000scot_w4n7', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Financial Freedom</span>
-            <button onclick="window.open('https://drive.google.com/file/d/10QoxAHosiXz0R9QCLXSf1p2XkUAjqQrC/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Finish Rich Quick Start System</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1ME565BpENcjXE3UyAGJAd26B9vZZbAeH/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>I Will Teach You How To Be Rich</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1mHjMOkb71FW521xEF1oMLqrpD40A-i3g/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Little Book Of Common Sense Investing</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1Yte1Hwn1pthhgB7xzyJdaiICbV2JgaCW/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Money Master The Game</span>
-            <button onclick="window.open('https://drive.google.com/file/d/19x_nuyja4uAlqgggpzdVmKXyR3QQhozM/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Barefoot Investor</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1R3cxF2bTNMWr7F8yvUEqeTeWiu2gJ_SC/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Total Money Makeover</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1JmFTvtfs35C-D5jYtY9ztBhVuTkH2xSp/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>Never Split The Difference</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1H34r-ijkmBQYhh9UgpHq3rhOWtHbJGJG/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>You Are Not So Smart</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1L8wEwRwyDnfCnwgi2qqTjIzYm1XWpld7/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>You Are a Badass</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1JDNOIkQlWu9OF8lCCaTyW2ptpq3Xz-3n/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Power of Habit</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1ssZE2Wdxp_2R5HLBLm-Efr2ujljNn_aD/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The 80_20 Principle</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1Okh155GyD11oQu5a80N9mhf3kVocjPkq/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Read People Like a Book</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1Pz_WCgfK2hxmOV3mxZocE5awtoKX5sF7/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Willpower</span>
-            <button onclick="window.open('https://drive.google.com/file/d/14bOGRR5ZjCyZ5gv2w55VuV0aXwfjB0W2/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>1984</span>
-            <button onclick="window.open('https://drive.google.com/file/d/100Rig-fO0eAsyhpKaRnHPtCFZvFQA6gd/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Brave New World</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1IhIKdlUHgHbRtcn9HfvR8vNv2QJlYaRk/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Reality Transurfing Steps I-V</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1H2z9uKnNH55R520pxZ_Ah_gbeIlfJKW9/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Sovereign Individual</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1PcP3VSHXVpy0DlWWgtN_2vKwnM8Exd1W/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Medical Nemesis</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1Wu5HG7eVZ_KzcFaCHbOam61c2_QRLiUy/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Tyndale Bible</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1ooQA7Uel686yWDgY-wAHXjJfHBb8S2rg/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Stories Of The Qur'an</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1UTzHrGYEofLEjyqu8BGLUKbSPRB7RNB5/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Gulag Archipelago Vol 1</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1f3AYJfxzP8FaxZdp6Li5PAja4mygwDu-/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Egyptian</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1QwY0cnME5QAd1mnhLGoMS61OpzfMfa2p/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Fahrenheit 451</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1SwsuP0crp9jzXSH5gfhcWtbKNpif_nUy/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>The Mass Psychology Of Fascism</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1FkyxzSvuQs6bVz5qwmqsTd4NHN6_LZ0O/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>The Adam & Eve Story</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1hoMPXzF-9Vh8JWcbTCEQsDaqT5zytM7k/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>The Third World War</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1iA7bBsYO5Hs-g24z3URXS0LEl84QWXlI/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>48 Laws Of Power</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1xRUnrp6NslPT1b6QKdpzGCGI_Mpnj8qg/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>The Art Of War</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1VItZ9LBlYuTT4LZ1-yCb8ty-uDWjiIQU/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>Meditations</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1orVXFpIIYN2qXXnHO9Z296O_oQK7NvLO/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-           <div class="book">
-            <span>Sapiens - The Brief History Of Humankind</span>
-            <button onclick="window.open('https://drive.google.com/file/d/17NayHUggdhrTKAL-rJIzJ_ySmWvknog-/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-           <div class="book">
-            <span>The Laws Of Human Nature</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1wPx7S-GhYlu3w65CqjHAd9reX8nEYVtQ/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-           <div class="book">
-            <span>Atomic Habits</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1VkBLgELioZDsYMLZDTC9VlHla9QsIZSQ/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-           <div class="book">
-            <span>The Power Of Now</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1hn61sjaFdAq0z6q6OdasT3VMasFmKWTU/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-           <div class="book">
-            <span>The Psychology Of Persuasion</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1Ey21MOYZMwfCFIDrndYfiVFDaZIs09XD/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-           <div class="book">
-            <span>The Alchemist (English Version)</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1cyGCAYFslHi_Js2mATK5Ypq8JE2UJdUv/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-           <div class="book">
-            <span>The Alchemist (Indonesian Version)</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1QvvBTE6h-KZ2XrsePm2M7oZ_BOqu5wYp/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-           <div class="book">
-            <span>Antifragile</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1ExkSxZMsqmyCfHbUifrh4WZ5walnNco7/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-           <div class="book">
-            <span>The Structure Of Scientific Revolutions</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1vBLv8gvWxYAgDq_ABBErwk5OwZ9Kalc4/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>7 Laws Of Success</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1hkn7LGsir0d2vR-STRfKzvFtNegWA-RV/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>100 Laws Of Business Success</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1GMagaf5NugSsIbZPHFceBrXz83Z9RymX/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Believe It To Achieve It</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1MNIDomp8bUcK5ZWggMI_EfiTjgi-Zv8q/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Ultimate Goals Program</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1bTL6nNGyf5wxUZWvcTamJYaN8YnPs2pE/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Universal Law Of Success And Achievement</span>
-            <button onclick="window.open('https://drive.google.com/file/d/11mFhqo5YifDe47-XiUaiauDoW1oUtvem/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Focal Point</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1tkPjyPI_fwZd7w6V87Os6gR2CVc7lDJZ/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Psychology Of Achievement</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1SemfI7wkYKUsp93yYmWifoVgM9mhb_Qq/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>21 Secrets Of Self-Made Millionaires</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1Xk5Sj_mwhf8VG7LSY8t0xYqz6UkVQ0Ax/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Change Your Thinking Change Your Life</span>
-            <button onclick="window.open('https://drive.google.com/file/d/11LlS8IQA7eighb8kbI2yTmllLlQI8a9R/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Master Your Time Master Your Life</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1IQhciTTlTb52a-GoL7xSDWC8hodr4uSq/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Art Of Closing The Sale</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1Dlsa55s0Sy-KSpFy2iDQyewzk1Rjxbkv/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Eat That Frog</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1AHgtpzWp1usH-Aa7__hzU7kcPn4rgO_E/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Flight Plan</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1mVvOYuTJK4qmJH1C1oF2vzXUmoS8cZ-c/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Get Paid More And Promoted Faster</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1y-jisjYO80Cw_cGZymMqJ6mjrxH8k15q/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Just Shut Up And Do It</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1abE7mkYAiaWqeVAWZRadkCNnjVj1NEgR/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Maximum Achievement</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1-Zcn3f1ReoCmVfOyVysPdFejuNAbDxHr/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Mindset</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1m0BcIFD41mi6Uat01180mp6CTCn4zCze/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Speak To Win</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1cpNiexEOBTlZVxjycUOkWP4xzijjrL-k/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Take Charge Of Your Life</span>
-            <button onclick="window.open('https://drive.google.com/file/d/17pbfLPc8HN8mv-c8p3N3jJxRLEJHBuhm/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>No Excuses</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1t-HuqJ5UuZfbR05h_7lB8lKcII6N5lw4/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Power Of Self Confidence</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1jZA68CjGwg3U5qWXT7EU6RtCmhQSADcV/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Turbo Coach</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1T-guM9c1k29gVq8paywdyJlHDfn991oA/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Create Your Own Future</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1_ISaomyzs1_HxNrWjml6EIPO7uGFIbGp/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Art Of Selling</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1q8j7B_4pe4VBiyMrk8KMe4kLPBXiM9Dx/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Titan The Life Of John D. Rockefeller</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1ICTjUI0dt2ZEm3rFSK0seOhIzekLCDyS/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>The Structure Of Scientific Revolutions</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1vBLv8gvWxYAgDq_ABBErwk5OwZ9Kalc4/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Arya Dinata Note 1 (Navy Note)</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1URUlEpdhheQSmefganYvX_JuAho6t1JJ/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Arya Dinata Note 2 (Batik Note)</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1LlwZ_-GfRaTqiAeYgL424cwK_huS1TOj/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Arya Dinata Note 3 (Black Note)</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1OIv2ZWMW99O31N7nt9ZAhoC4ObFhx80d/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Arya Dinata Note 4 (Brown Batik Note)</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1Cpp2lowcDOkCPJ_aQd42-Q0ym6LV2F0q/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Arya Dinata Note 5 (Green Batik Note)</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1fWzM-jv-Qr9uPuhgbEQ9b3ZkkmEbSqN1/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Arya Dinata Note 6 (Harvard Note)</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1-BLD0ZrFnNj44h6eJm7FsVDCCbZ4EtzC/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-        <div class="book">
-            <span>Muda Kaya Raya Mati Masuk Syurga</span>
-            <button onclick="window.open('https://drive.google.com/file/d/108ksBsU5t7qy1UsIGZczlLgPrwOxgg4B/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
-         <div class="book">
-            <span>Untaian Nasihat Imam Syafi'i</span>
-            <button onclick="window.open('https://drive.google.com/file/d/1jT58-DCCYbYqFGM-qU0fJkiSn1EzeSin/view?usp=sharing', '_blank')">📖 Open</button>
-        </div>
+        <div class="search-container">
+            <input 
+                type="text" 
+                class="search-input" 
+                id="searchInput" 
+                placeholder="Search books... (e.g., 'titan' to find 'Titan')"
+                onkeyup="searchBooks()"
+            >
+        </div>
+        <div id="booksContainer"></div>
+        <div id="noResults" class="no-results" style="display: none;">No books found matching your search.</div>
     </div>
+
+    <script>
+        // Array of books with their information
+        const books = [
+            { title: "The Richest Man in Babylon (PDF)", url: "https://drive.google.com/file/d/1ExF2Prf6sKpR5xWvV8Jjk8MED7K9Bs6d/view?usp=sharing" },
+            { title: "Rich Dad Poor Dad", url: "https://drive.google.com/file/d/12Ul88vEcSpJy_jfXsEQ4Jn34un58bxCY/view?usp=sharing" },
+            { title: "Rockefeller Letters To His Son", url: "https://drive.google.com/file/d/1J54ejqT_Z99ipUmcc_hP8MZDZetQDcPV/view?usp=drive_link" },
+            { title: "Cashflow Quadrant", url: "https://drive.google.com/file/d/1ViBaJd4bwW6wjmYS2dIK8LpM8Yw8_Wii/view?usp=sharing" },
+            { title: "Know The Only Truth", url: "https://drive.google.com/file/d/1L_f0HfsMdzSfwDHHSIhSmgGOw61VVAH9/view?usp=sharing" },
+            { title: "Think and Grow Rich", url: "https://drive.google.com/file/d/1hNK4J4WSDXfLdiIMfRLk41nkP6m0FdqA/view?usp=sharing" },
+            { title: "Rich Dad Poor Dad for Teens", url: "https://drive.google.com/file/d/1JQd7EX2e2D_3VQnVFeuPWder-Z_UhUeB/view?usp=sharing" },
+            { title: "Rich Dad's Rich Kid Smart Kid", url: "https://drive.google.com/file/d/1GYWiy_xFkA5wceCCfZTl6rXVyjOMO1dc/view?usp=sharing" },
+            { title: "Why We Want You To Be Rich", url: "https://drive.google.com/file/d/1rTpcsuARzCszNUkVuTyCs_FLfIBAHXfT/view?usp=sharing" },
+            { title: "Unfair Advantage", url: "https://drive.google.com/file/d/1km0SNqU2-DEAed0AI-lGEx4dVSv2dETu/view?usp=sharing" },
+            { title: "The Way of the Superior Man", url: "https://drive.google.com/file/d/1LAYA5np0lnF0MFrvUp06uYlZICGasWW0/view?usp=sharing" },
+            { title: "The Psychology Of Money", url: "https://drive.google.com/file/d/1b1pWqEvN9MlfEwmrp357rOb8jqW42O6V/view?usp=sharing" },
+            { title: "The Let Them Theory", url: "https://drive.google.com/file/d/1kypzgIvZjn8tQ5OIQiXSjTmw0JzW8XAe/view?usp=sharing" },
+            { title: "Thinking Fast and Slow", url: "https://drive.google.com/file/d/1a65Wk71wpIXzZRbVhe_cLFqjfMqAPqo5/view?usp=sharing" },
+            { title: "The Bitcoin Standard", url: "https://drive.google.com/file/d/1Ne38JzkMchSbtUp8N28FC8ILKyzzy2L2/view?usp=sharing" },
+            { title: "The Richest Man Who Have Ever Lived", url: "https://archive.org/details/richestmanwhoeve0000scot_w4n7" },
+            { title: "Financial Freedom", url: "https://drive.google.com/file/d/10QoxAHosiXz0R9QCLXSf1p2XkUAjqQrC/view?usp=sharing" },
+            { title: "Finish Rich Quick Start System", url: "https://drive.google.com/file/d/1ME565BpENcjXE3UyAGJAd26B9vZZbAeH/view?usp=sharing" },
+            { title: "I Will Teach You How To Be Rich", url: "https://drive.google.com/file/d/1mHjMOkb71FW521xEF1oMLqrpD40A-i3g/view?usp=sharing" },
+            { title: "Little Book Of Common Sense Investing", url: "https://drive.google.com/file/d/1Yte1Hwn1pthhgB7xzyJdaiICbV2JgaCW/view?usp=sharing" },
+            { title: "Money Master The Game", url: "https://drive.google.com/file/d/19x_nuyja4uAlqgggpzdVmKXyR3QQhozM/view?usp=sharing" },
+            { title: "The Barefoot Investor", url: "https://drive.google.com/file/d/1R3cxF2bTNMWr7F8yvUEqeTeWiu2gJ_SC/view?usp=sharing" },
+            { title: "The Total Money Makeover", url: "https://drive.google.com/file/d/1JmFTvtfs35C-D5jYtY9ztBhVuTkH2xSp/view?usp=sharing" },
+            { title: "Never Split The Difference", url: "https://drive.google.com/file/d/1H34r-ijkmBQYhh9UgpHq3rhOWtHbJGJG/view?usp=sharing" },
+            { title: "You Are Not So Smart", url: "https://drive.google.com/file/d/1L8wEwRwyDnfCnwgi2qqTjIzYm1XWpld7/view?usp=sharing" },
+            { title: "You Are a Badass", url: "https://drive.google.com/file/d/1JDNOIkQlWu9OF8lCCaTyW2ptpq3Xz-3n/view?usp=sharing" },
+            { title: "The Power of Habit", url: "https://drive.google.com/file/d/1ssZE2Wdxp_2R5HLBLm-Efr2ujljNn_aD/view?usp=sharing" },
+            { title: "The 80_20 Principle", url: "https://drive.google.com/file/d/1Okh155GyD11oQu5a80N9mhf3kVocjPkq/view?usp=sharing" },
+            { title: "Read People Like a Book", url: "https://drive.google.com/file/d/1Pz_WCgfK2hxmOV3mxZocE5awtoKX5sF7/view?usp=sharing" },
+            { title: "Willpower", url: "https://drive.google.com/file/d/14bOGRR5ZjCyZ5gv2w55VuV0aXwfjB0W2/view?usp=sharing" },
+            { title: "1984", url: "https://drive.google.com/file/d/100Rig-fO0eAsyhpKaRnHPtCFZvFQA6gd/view?usp=sharing" },
+            { title: "Brave New World", url: "https://drive.google.com/file/d/1IhIKdlUHgHbRtcn9HfvR8vNv2QJlYaRk/view?usp=sharing" },
+            { title: "Reality Transurfing Steps I-V", url: "https://drive.google.com/file/d/1H2z9uKnNH55R520pxZ_Ah_gbeIlfJKW9/view?usp=sharing" },
+            { title: "The Sovereign Individual", url: "https://drive.google.com/file/d/1PcP3VSHXVpy0DlWWgtN_2vKwnM8Exd1W/view?usp=sharing" },
+            { title: "Medical Nemesis", url: "https://drive.google.com/file/d/1Wu5HG7eVZ_KzcFaCHbOam61c2_QRLiUy/view?usp=sharing" },
+            { title: "Tyndale Bible", url: "https://drive.google.com/file/d/1ooQA7Uel686yWDgY-wAHXjJfHBb8S2rg/view?usp=sharing" },
+            { title: "Stories Of The Qur'an", url: "https://drive.google.com/file/d/1UTzHrGYEofLEjyqu8BGLUKbSPRB7RNB5/view?usp=sharing" },
+            { title: "The Gulag Archipelago Vol 1", url: "https://drive.google.com/file/d/1f3AYJfxzP8FaxZdp6Li5PAja4mygwDu-/view?usp=sharing" },
+            { title: "The Egyptian", url: "https://drive.google.com/file/d/1QwY0cnME5QAd1mnhLGoMS61OpzfMfa2p/view?usp=sharing" },
+            { title: "Fahrenheit 451", url: "https://drive.google.com/file/d/1SwsuP0crp9jzXSH5gfhcWtbKNpif_nUy/view?usp=sharing" },
+            { title: "The Mass Psychology Of Fascism", url: "https://drive.google.com/file/d/1FkyxzSvuQs6bVz5qwmqsTd4NHN6_LZ0O/view?usp=sharing" },
+            { title: "The Adam & Eve Story", url: "https://drive.google.com/file/d/1hoMPXzF-9Vh8JWcbTCEQsDaqT5zytM7k/view?usp=sharing" },
+            { title: "The Third World War", url: "https://drive.google.com/file/d/1iA7bBsYO5Hs-g24z3URXS0LEl84QWXlI/view?usp=sharing" },
+            { title: "48 Laws Of Power", url: "https://drive.google.com/file/d/1xRUnrp6NslPT1b6QKdpzGCGI_Mpnj8qg/view?usp=sharing" },
+            { title: "The Art Of War", url: "https://drive.google.com/file/d/1VItZ9LBlYuTT4LZ1-yCb8ty-uDWjiIQU/view?usp=sharing" },
+            { title: "Meditations", url: "https://drive.google.com/file/d/1orVXFpIIYN2qXXnHO9Z296O_oQK7NvLO/view?usp=sharing" },
+            { title: "Sapiens - The Brief History Of Humankind", url: "https://drive.google.com/file/d/17NayHUggdhrTKAL-rJIzJ_ySmWvknog-/view?usp=sharing" },
+            { title: "The Laws Of Human Nature", url: "https://drive.google.com/file/d/1wPx7S-GhYlu3w65CqjHAd9reX8nEYVtQ/view?usp=sharing" },
+            { title: "Atomic Habits", url: "https://drive.google.com/file/d/1VkBLgELioZDsYMLZDTC9VlHla9QsIZSQ/view?usp=sharing" },
+            { title: "The Power Of Now", url: "https://drive.google.com/file/d/1hn61sjaFdAq0z6q6OdasT3VMasFmKWTU/view?usp=sharing" },
+            { title: "The Psychology Of Persuasion", url: "https://drive.google.com/file/d/1Ey21MOYZMwfCFIDrndYfiVFDaZIs09XD/view?usp=sharing" },
+            { title: "The Alchemist (English Version)", url: "https://drive.google.com/file/d/1cyGCAYFslHi_Js2mATK5Ypq8JE2UJdUv/view?usp=sharing" },
+            { title: "The Alchemist (Indonesian Version)", url: "https://drive.google.com/file/d/1QvvBTE6h-KZ2XrsePm2M7oZ_BOqu5wYp/view?usp=sharing" },
+            { title: "Antifragile", url: "https://drive.google.com/file/d/1ExkSxZMsqmyCfHbUifrh4WZ5walnNco7/view?usp=sharing" },
+            { title: "The Structure Of Scientific Revolutions", url: "https://drive.google.com/file/d/1vBLv8gvWxYAgDq_ABBErwk5OwZ9Kalc4/view?usp=sharing" },
+            { title: "7 Laws Of Success", url: "https://drive.google.com/file/d/1hkn7LGsir0d2vR-STRfKzvFtNegWA-RV/view?usp=sharing" },
+            { title: "100 Laws Of Business Success", url: "https://drive.google.com/file/d/1GMagaf5NugSsIbZPHFceBrXz83Z9RymX/view?usp=sharing" },
+            { title: "Believe It To Achieve It", url: "https://drive.google.com/file/d/1MNIDomp8bUcK5ZWggMI_EfiTjgi-Zv8q/view?usp=sharing" },
+            { title: "The Ultimate Goals Program", url: "https://drive.google.com/file/d/1bTL6nNGyf5wxUZWvcTamJYaN8YnPs2pE/view?usp=sharing" },
+            { title: "The Universal Law Of Success And Achievement", url: "https://drive.google.com/file/d/11mFhqo5YifDe47-XiUaiauDoW1oUtvem/view?usp=sharing" },
+            { title: "Focal Point", url: "https://drive.google.com/file/d/1tkPjyPI_fwZd7w6V87Os6gR2CVc7lDJZ/view?usp=sharing" },
+            { title: "The Psychology Of Achievement", url: "https://drive.google.com/file/d/1SemfI7wkYKUsp93yYmWifoVgM9mhb_Qq/view?usp=sharing" },
+            { title: "21 Secrets Of Self-Made Millionaires", url: "https://drive.google.com/file/d/1Xk5Sj_mwhf8VG7LSY8t0xYqz6UkVQ0Ax/view?usp=sharing" },
+            { title: "Change Your Thinking Change Your Life", url: "https://drive.google.com/file/d/11LlS8IQA7eighb8kbI2yTmllLlQI8a9R/view?usp=sharing" },
+            { title: "Master Your Time Master Your Life", url: "https://drive.google.com/file/d/1IQhciTTlTb52a-GoL7xSDWC8hodr4uSq/view?usp=sharing" },
+            { title: "The Art Of Closing The Sale", url: "https://drive.google.com/file/d/1Dlsa55s0Sy-KSpFy2iDQyewzk1Rjxbkv/view?usp=sharing" },
+            { title: "Eat That Frog", url: "https://drive.google.com/file/d/1AHgtpzWp1usH-Aa7__hzU7kcPn4rgO_E/view?usp=sharing" },
+            { title: "Flight Plan", url: "https://drive.google.com/file/d/1mVvOYuTJK4qmJH1C1oF2vzXUmoS8cZ-c/view?usp=sharing" },
+            { title: "Get Paid More And Promoted Faster", url: "https://drive.google.com/file/d/1y-jisjYO80Cw_cGZymMqJ6mjrxH8k15q/view?usp=sharing" },
+            { title: "Just Shut Up And Do It", url: "https://drive.google.com/file/d/1abE7mkYAiaWqeVAWZRadkCNnjVj1NEgR/view?usp=sharing" },
+            { title: "Maximum Achievement", url: "https://drive.google.com/file/d/1-Zcn3f1ReoCmVfOyVysPdFejuNAbDxHr/view?usp=sharing" },
+            { title: "Mindset", url: "https://drive.google.com/file/d/1m0BcIFD41mi6Uat01180mp6CTCn4zCze/view?usp=sharing" },
+            { title: "Speak To Win", url: "https://drive.google.com/file/d/1cpNiexEOBTlZVxjycUOkWP4xzijjrL-k/view?usp=sharing" },
+            { title: "Take Charge Of Your Life", url: "https://drive.google.com/file/d/17pbfLPc8HN8mv-c8p3N3jJxRLEJHBuhm/view?usp=sharing" },
+            { title: "No Excuses", url: "https://drive.google.com/file/d/1t-HuqJ5UuZfbR05h_7lB8lKcII6N5lw4/view?usp=sharing" },
+            { title: "The Power Of Self Confidence", url: "https://drive.google.com/file/d/1jZA68CjGwg3U5qWXT7EU6RtCmhQSADcV/view?usp=sharing" },
+            { title: "Turbo Coach", url: "https://drive.google.com/file/d/1T-guM9c1k29gVq8paywdyJlHDfn991oA/view?usp=sharing" },
+            { title: "Create Your Own Future", url: "https://drive.google.com/file/d/1_ISaomyzs1_HxNrWjml6EIPO7uGFIbGp/view?usp=sharing" },
+            { title: "The Art Of Selling", url: "https://drive.google.com/file/d/1q8j7B_4pe4VBiyMrk8KMe4kLPBXiM9Dx/view?usp=sharing" },
+            { title: "Titan The Life Of John D. Rockefeller", url: "https://drive.google.com/file/d/1ICTjUI0dt2ZEm3rFSK0seOhIzekLCDyS/view?usp=sharing" },
+            { title: "Arya Dinata Note 1 (Navy Note)", url: "https://drive.google.com/file/d/1URUlEpdhheQSmefganYvX_JuAho6t1JJ/view?usp=sharing" },
+            { title: "Arya Dinata Note 2 (Batik Note)", url: "https://drive.google.com/file/d/1LlwZ_-GfRaTqiAeYgL424cwK_huS1TOj/view?usp=sharing" },
+            { title: "Arya Dinata Note 3 (Black Note)", url: "https://drive.google.com/file/d/1OIv2ZWMW99O31N7nt9ZAhoC4ObFhx80d/view?usp=sharing" },
+            { title: "Arya Dinata Note 4 (Brown Batik Note)", url: "https://drive.google.com/file/d/1Cpp2lowcDOkCPJ_aQd42-Q0ym6LV2F0q/view?usp=sharing" },
+            { title: "Arya Dinata Note 5 (Green Batik Note)", url: "https://drive.google.com/file/d/1fWzM-jv-Qr9uPuhgbEQ9b3ZkkmEbSqN1/view?usp=sharing" },
+            { title: "Arya Dinata Note 6 (Harvard Note)", url: "https://drive.google.com/file/d/1-BLD0ZrFnNj44h6eJm7FsVDCCbZ4EtzC/view?usp=sharing" },
+            { title: "Muda Kaya Raya Mati Masuk Syurga", url: "https://drive.google.com/file/d/108ksBsU5t7qy1UsIGZczlLgPrwOxgg4B/view?usp=sharing" },
+            { title: "Untaian Nasihat Imam Syafi'i", url: "https://drive.google.com/file/d/1jT58-DCCYbYqFGM-qU0fJkiSn1EzeSin/view?usp=sharing" }
+        ];
+
+        // Sort books alphabetically by title
+        books.sort((a, b) => a.title.localeCompare(b.title));
+
+        // Render all books initially
+        function renderBooks(booksToRender) {
+            const container = document.getElementById('booksContainer');
+            container.innerHTML = '';
+
+            if (booksToRender.length === 0) {
+                document.getElementById('noResults').style.display = 'block';
+                return;
+            }
+
+            document.getElementById('noResults').style.display = 'none';
+
+            booksToRender.forEach(book => {
+                const bookDiv = document.createElement('div');
+                bookDiv.className = 'book';
+                bookDiv.innerHTML = `
+                    <span>${book.title}</span>
+                    <button onclick="window.open('${book.url}', '_blank')">📖 Open</button>
+                `;
+                container.appendChild(bookDiv);
+            });
+        }
+
+        // Search function
+        function searchBooks() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (searchInput === '') {
+                renderBooks(books);
+                return;
+            }
+
+            // Filter books based on search input
+            const filteredBooks = books.filter(book =>
+                book.title.toLowerCase().includes(searchInput)
+            );
+
+            renderBooks(filteredBooks);
+        }
+
+        // Initial render
+        renderBooks(books);
+    </script>
 </body>
 </html>
