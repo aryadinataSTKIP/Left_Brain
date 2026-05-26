@@ -10,63 +10,75 @@
             background-color: #f0f0f0;
             text-align: center;
             padding: 20px;
+            margin: 0;
         }
         .book-container {
-            max-width: 600px;
+            max-width: 700px;
             margin: auto;
             background: linear-gradient(135deg, #6e8efb, #a777e3);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25);
             color: white;
         }
         h2 {
-            font-size: 24px;
+            font-size: 26px;
+            margin-bottom: 15px;
         }
         .search-container {
             margin-bottom: 20px;
         }
         .search-input {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             font-size: 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             box-sizing: border-box;
+            outline: none;
         }
         .search-input::placeholder {
-            color: #999;
+            color: #888;
         }
         .book {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 14px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            text-align: left;
         }
         .book:last-child {
             border-bottom: none;
         }
-        .book.hidden {
-            display: none;
+        .book span {
+            flex: 1;
+            margin-right: 10px;
+            font-size: 15px;
         }
         button {
             background-color: #ffcc00;
-            color: black;
+            color: #111;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 18px;
             cursor: pointer;
             border-radius: 8px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: background 0.2s, transform 0.1s;
+            white-space: nowrap;
         }
         button:hover {
             background-color: #e6b800;
+            transform: translateY(-1px);
+        }
+        button:active {
+            transform: translateY(0);
         }
         .no-results {
             padding: 20px;
             text-align: center;
             font-style: italic;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -87,9 +99,8 @@
     </div>
 
     <script>
-        // Array of books with their information
         const books = [
-            { title: "The Richest Man in Babylon (PDF)", url: "https://drive.google.com/file/d/1ExF2Prf6sKpR5xWvV8Jjk8MED7K9Bs6d/view?usp=sharing" },
+            { title: "The Richest Man in Babylon", url: "https://drive.google.com/file/d/1ExF2Prf6sKpR5xWvV8Jjk8MED7K9Bs6d/view?usp=sharing" },
             { title: "Rich Dad Poor Dad", url: "https://drive.google.com/file/d/12Ul88vEcSpJy_jfXsEQ4Jn34un58bxCY/view?usp=sharing" },
             { title: "Rockefeller Letters To His Son", url: "https://drive.google.com/file/d/1J54ejqT_Z99ipUmcc_hP8MZDZetQDcPV/view?usp=drive_link" },
             { title: "Cashflow Quadrant", url: "https://drive.google.com/file/d/1ViBaJd4bwW6wjmYS2dIK8LpM8Yw8_Wii/view?usp=sharing" },
@@ -116,7 +127,7 @@
             { title: "You Are Not So Smart", url: "https://drive.google.com/file/d/1L8wEwRwyDnfCnwgi2qqTjIzYm1XWpld7/view?usp=sharing" },
             { title: "You Are a Badass", url: "https://drive.google.com/file/d/1JDNOIkQlWu9OF8lCCaTyW2ptpq3Xz-3n/view?usp=sharing" },
             { title: "The Power of Habit", url: "https://drive.google.com/file/d/1ssZE2Wdxp_2R5HLBLm-Efr2ujljNn_aD/view?usp=sharing" },
-            { title: "The 80_20 Principle", url: "https://drive.google.com/file/d/1Okh155GyD11oQu5a80N9mhf3kVocjPkq/view?usp=sharing" },
+            { title: "The 80/20 Principle", url: "https://drive.google.com/file/d/1Okh155GyD11oQu5a80N9mhf3kVocjPkq/view?usp=sharing" },
             { title: "Read People Like a Book", url: "https://drive.google.com/file/d/1Pz_WCgfK2hxmOV3mxZocE5awtoKX5sF7/view?usp=sharing" },
             { title: "Willpower", url: "https://drive.google.com/file/d/14bOGRR5ZjCyZ5gv2w55VuV0aXwfjB0W2/view?usp=sharing" },
             { title: "1984", url: "https://drive.google.com/file/d/100Rig-fO0eAsyhpKaRnHPtCFZvFQA6gd/view?usp=sharing" },
@@ -183,61 +194,501 @@
             { title: "You can negotiate anything", url: "https://drive.google.com/file/d/1TIFqXpwtw-QS4UVIcVKjljS4krg3JmW4/view" },
             { title: "Work Rules!", url: "https://drive.google.com/file/d/1DNcouRB6rwFh2i91BYijW_2zPYA2ah5_/view" },
             { title: "What they don't teach you at Harvard Business School", url: "https://drive.google.com/file/d/1H10wagUBa9bMh9DdptBhQMt917oNVMZx/view" },
-            { title: "Why The Rich are Getting Richer", url: "https://drive.google.com/file/d/1T57S6C8mKB76S_3HutGoxdqMjHl-7wDJ/view" }
+            { title: "Why The Rich are Getting Richer", url: "https://drive.google.com/file/d/1T57S6C8mKB76S_3HutGoxdqMjHl-7wDJ/view" },
+            { title: "What are you looking for is in the library", url: "https://drive.google.com/file/d/1iRqqveF6NA3aSXe6-kj6jAtZSXo8zxhH/view" },
+            { title: "Who Cares Wins", url: "https://drive.google.com/file/d/1DRNE3qp3yiJA95A_VFx2zs4nUbVGpSLz/view" },
+            { title: "What great brands do", url: "https://drive.google.com/file/d/10QLMXzpps41uK40p8l_F5rcxGK3y3Zmt/view" },
+            { title: "Who Moved My Cheese?", url: "https://drive.google.com/file/d/1u3Y4A5TTgRkjBCwdlby43xU-0pzvIK5Y/view" },
+            { title: "Who rules the world", url: "https://drive.google.com/file/d/10lv-A5RRTYPt-0k4rtzztA-hD6_G_piv/view" },
+            { title: "Veronika Decides to Die", url: "https://drive.google.com/file/d/1HbyEB5FcgkueLmTQkF0lmbgYsHkFL2sk/view" },
+            { title: "Way of The Wolf", url: "https://drive.google.com/file/d/1ZM-hMdbFjr8ZgHUQ36uRZuUTRD17ucuN/view" },
+            { title: "Untangled", url: "https://drive.google.com/file/d/1zk2JP9K4Y8Dw9yQvm5TaO3z3GSyhWdbE/view" },
+            { title: "Untamed", url: "https://drive.google.com/file/d/11H5dsCmtcXH9dAZu5xWuh2MOgM2UPNq8/view" },
+            { title: "Understanding Power", url: "https://drive.google.com/file/d/1rkrTMwOs2ENfkTvfoIX5o1_Rn2gwZIWY/view" },
+            { title: "Too Big To Fail", url: "https://drive.google.com/file/d/1Af9rURQa5EnwCQx_AlhflzFMF2tjjvTf/view" },
+            { title: "Tiny Humans, Big Emotions", url: "https://drive.google.com/file/d/1_LPB1caOV73WJfxY4AXgk75hLummRVE7/view" },
+            { title: "To Educate the Human Potential", url: "https://drive.google.com/file/d/12x-lfTqniB1gKYVC3JG0fENvp82WCnPx/view" },
+            { title: "Titan: The Life of John D Rockefeller", url: "https://drive.google.com/file/d/1HGKRKKkvTs6RRxgef1T4HeagAymyUDqO/view" },
+            { title: "The Whole-Brain Child", url: "https://drive.google.com/file/d/1hkf1YJlQ3B7HBf-QpY64Hh0pNXIj06JT/view" },
+            { title: "Thrivers", url: "https://drive.google.com/file/d/1LVZrUwWrguHz2uCmuXqcXLxO1hGcabdt/view" },
+            { title: "The Yes Brain", url: "https://drive.google.com/file/d/1K5zfh-kbwh4YDqMI06abz4IhnE5Wv8Lr/view" },
+            { title: "The Winner Stands Alone", url: "https://drive.google.com/file/d/1NrFsRGc2StaXAod4X_3EaUuJ05jpHKWf/view" },
+            { title: "The Uninhabitable Earth", url: "https://drive.google.com/file/d/1Y-pY1I343VCvEwjoC4m12ZZguYyD3RuH/view" },
+            { title: "The Symposium", url: "https://drive.google.com/file/d/1ZIPdVW2GhHHZur7m40wtCalzVMH1EB0b/view" },
+            { title: "The Snowball", url: "https://drive.google.com/file/d/1WEUfmECy7cLvfr9TxYYJMwqnq3OWSCWC/view" },
+            { title: "The war of art", url: "https://drive.google.com/file/d/1Mo3-xVzi1GvTKRvtUaIpw_AED6XObA2O/view" },
+            { title: "The Tipping Point", url: "https://drive.google.com/file/d/1ju0K-h5m9A9NdTG7cxqw2VFsmmxkcjsA/view" },
+            { title: "The Secret of Childhood", url: "https://drive.google.com/file/d/1LfJaBMqq6nrEyYtfIXp-UOcoDeZNuv7j/view" },
+            { title: "The Secret History of The World", url: "https://drive.google.com/file/d/1fvnFd-pZPEeQY_i9MdXsImIZSqg4bxp_/view" },
+            { title: "The Sales Bible", url: "https://drive.google.com/file/d/1l4Ex_7UUdmVRyRWuaCOkurWu7Nmh8_x0/view" },
+            { title: "The Power of Showing Up", url: "https://drive.google.com/file/d/1aiDJjwRhGVtQSgsBsuE0Fs1zs6PzlwEF/view" },
+            { title: "The Outsiders", url: "https://drive.google.com/file/d/1PpuaxAlgT5BlgbCi5SABaxQ1V-sLiVpv/view" },
+            { title: "The Personal MBA", url: "https://drive.google.com/file/d/1KdasP2LtKtrH1h2zwk_tnMtPh-ehzbBq/view" },
+            { title: "The One-Straw Revolution", url: "https://drive.google.com/file/d/1PZirkH4UB6wgA3bfpNa-zaEy0xgcXTjz/view" },
+            { title: "The One Thing", url: "https://drive.google.com/file/d/1tsingTvvTwV4FooPr_9-u86wprMldIpB/view" },
+            { title: "The Neurobiology of We", url: "https://drive.google.com/file/d/1kAGN2726Fodn_zAF-tXu5K9jgMP3lYBb/view" },
+            { title: "The One Minute Manager", url: "https://drive.google.com/file/d/19nECoxgzvMLVVKJsb7Vj0ETbZ_7C5a1w/view" },
+            { title: "The Montessori Child", url: "https://drive.google.com/file/d/1SAoARtNMJeVwXTrFt3tunEe9rXrd7s2A/view" },
+            { title: "The Montessori Method", url: "https://drive.google.com/file/d/1O9Wk4nNUYXV9vtbnkH_TjsdR5qNjhvA0/view" },
+            { title: "The Montessori Toddler", url: "https://drive.google.com/file/d/1HIzTLFOB9hWsw7rHKT57rqcgqgCvjju4/view" },
+            { title: "The Montessori Baby", url: "https://drive.google.com/file/d/1-e-uPxJAvXmqAphcJ3sjjJ2xUwusO5ll/view" },
+            { title: "The Nicomachean Ethic", url: "https://drive.google.com/file/d/16oeWAyDSSA33Pdx2ykL6I2E6CWXNw7gO/view" },
+            { title: "The Mountain is You", url: "https://drive.google.com/file/d/1x5heK-hJgF0jwUIdV6lLyaCUOQnOwBeK/view" },
+            { title: "The Mindful Brain", url: "https://drive.google.com/file/d/12567Z7QA7oqgc2zuhoTYjR2GLjRZUG3Z/view" },
+            { title: "The Magic of Thinking Big", url: "https://drive.google.com/file/d/1tapt-idbEE2os7ooYPxq-C4u8WaCb8G-/view" },
+            { title: "The Lean Startup", url: "https://drive.google.com/file/d/17OTZ-m82IdpKlqyD39qxccGLII18GJoR/view" },
+            { title: "The Innovator's Dilemma", url: "https://drive.google.com/file/d/1_xL7r1u9hweYQpHlBq4hr3CPqSXBQ-oA/view" },
+            { title: "The Happiest Kids in The World", url: "https://drive.google.com/file/d/17tuDl8SANfm1lt4nU7muoQmL-3D2iuzv/view" },
+            { title: "The Hard Thing About Hard Things", url: "https://drive.google.com/file/d/1s5m3zG64y_5i6kOOMuQvHQzM73WQSsHA/view" },
+            { title: "The Greatest Salesman in The World", url: "https://drive.google.com/file/d/10wZW0VS68gH8E5ncrRN7OpVh68aWEaT6/view" },
+            { title: "The Good Ancestor", url: "https://drive.google.com/file/d/1Fm8-Bcp3GP810fjz5Ib71AyEOeGTvVts/view" },
+            { title: "The Goal", url: "https://drive.google.com/file/d/1uaIsN9sP7XgWJ-YcepHISbynH8w9gd0y/view" },
+            { title: "The Discovery of the Child", url: "https://drive.google.com/file/d/1cAqifatQaJJboW7J7RCcRSFo3pHZNBg0/view" },
+            { title: "The Gentle Discipline Book", url: "https://drive.google.com/file/d/1BIhJHt3Iv4ClVxnIfer4k7v7s3R-eQmT/view" },
+            { title: "The Dip", url: "https://drive.google.com/file/d/1r4BerGfSjBoBKzLixW_0OTiH9i5ycjzA/view" },
+            { title: "The First 90 Days", url: "https://drive.google.com/file/d/1urlLOmvK-jEn_LMtg2XpNSsdL6wYcMvx/view" },
+            { title: "The five dysfunctions of a team", url: "https://drive.google.com/file/d/1xwamBFDIxNgJYiDc48TsfO39G9WudOqv/view" },
+            { title: "The Effective Executive", url: "https://drive.google.com/file/d/1XzsaKKnFtgDnvn1Fc4rimIEEiyqtVXa9/view" },
+            { title: "The E Myth Revisited", url: "https://sites.google.com/site/1_1butRI_mjZsQIeQEXbhcUnZqwCdxQ1w" },
+            { title: "The Danish Way of Parenting", url: "https://drive.google.com/file/d/1_aZgEgfMjr36feGuq3OKXyr_M3UZx8N2/view" },
+            { title: "The Developing Mind", url: "https://drive.google.com/file/d/19UNAmjqeWdyaahbTg8HeMGK9iYwv8hSy/view" },
+            { title: "The Complete Works of Aristotle", url: "https://drive.google.com/file/d/1lTt0l040pzeGnZRfwCLDv2ech3VfgQ03/view" },
+            { title: "The Child in the Family", url: "https://drive.google.com/file/d/1F7bjryYlYRinv4HfoMirstfmLmLs5RmF/view" },
+            { title: "The Chomsky-Foucault Debate", url: "https://drive.google.com/file/d/1MPcNPMw5_8qe9vziEOVrBKXGq_fZ22TO/view" },
+            { title: "The Charisma Myth", url: "https://drive.google.com/file/d/1w5z_YGEUHhuTsUqtI2MpeU8yFmZZLSwI/view" },
+            { title: "The Book You Wish Your Parents Had Read", url: "https://drive.google.com/file/d/19ZZbxMM04v7TyQDZfsKEDmuKcTV152tC/view" },
+            { title: "The Basic Laws of Human Stupidity", url: "https://drive.google.com/file/d/1KBK107dr33QFejaCnMocGosIYD16Hd0L/view" },
+            { title: "The Black Swan", url: "https://drive.google.com/file/d/15D0i_9_gsuvzZGPXAhfaHPVIKnsRZcE1/view" },
+            { title: "The Autobiography of Andrew Carnegie", url: "https://drive.google.com/file/d/1Y9nWZJ0osE4X5B_ExdQbh8R88wA_oUKs/view" },
+            { title: "The Art of Living", url: "https://drive.google.com/file/d/1sT1fCStQzRqG-3hhJ3X1MJ8LUtbUlMXf/view" },
+            { title: "The Art of Seduction", url: "https://drive.google.com/file/d/1y4PSrXi63PzoO89toa9mx-Aw4W_aQHE1/view" },
+            { title: "The Archer", url: "https://drive.google.com/file/d/1i_ON2kmiF2Tef6LP_mMuaXo7Rf-y3R8J/view" },
+            { title: "The Absorbent Mind", url: "https://drive.google.com/file/d/1nlVqBDOssffT-hu2CKBeSINyZustNG1e/view" },
+            { title: "The 7 Habits of Highly Effective People", url: "https://drive.google.com/file/d/1n-QVYazgUdIpjHI6IAI_PAJ8sUkUGWbb/view" },
+            { title: "The $100 startup", url: "https://drive.google.com/file/d/190N17m6zfDMOcHyC-VKO6Bw2b2FD26EC/view" },
+            { title: "Teaching Montessori in the Home", url: "https://drive.google.com/file/d/14sDvqn8Qac89jYDUVTgRD_J9_f6eYGdZ/view" },
+            { title: "The 21 Irrefutable Laws of Leadership", url: "https://drive.google.com/file/d/1BtQjEujLJQT0Yc9gRfHc5mfHZqlOnTLX/view" },
+            { title: "The 5 Love Languages of Children", url: "https://drive.google.com/file/d/1Mk3wHzmke3jT1zCZnkJGfG6RHwQFvUhG/view" },
+            { title: "Teach Like Finland", url: "https://drive.google.com/file/d/1sRzMyaiXEptc8Qq5uR-iqgJmxK5VV_jX/view" },
+            { title: "Taking Up Space", url: "https://drive.google.com/file/d/1MSdpXLZGLgVUVBc8ZOScmC7JdeTet5jv/view" },
+            { title: "Steal Like an Artist", url: "https://drive.google.com/file/d/1xPmUcaBjYWMaSI94JEqntiKmQDOVcx8o/view" },
+            { title: "Steve Jobs", url: "https://drive.google.com/file/d/1M08QI1Y7bWUcVM_zAUcQYjxSlGLmtEpY/view" },
+            { title: "Start With Why", url: "https://drive.google.com/file/d/1OJU6rRoZ7E7MT4aWhn7cfYNPyGL9iUno/view" },
+            { title: "Source Code", url: "https://drive.google.com/file/d/16Od95WqIHra4uhSIgKVjEsnOlpqc-vXu/view" },
+            { title: "Smarter Faster Better", url: "https://drive.google.com/file/d/18oLO_kK-VjvxCM55uv-KEfso9wKywC_7/view" },
+            { title: "Simplicity Parenting", url: "https://drive.google.com/file/d/1SiuQefooBZaW3t8RWs69A7FMduoI6723/view" },
+            { title: "Six Thinking Hats", url: "https://drive.google.com/file/d/1gPPyv1UIyupJ46eW79b20CY3LaVOv8vb/view" },
+            { title: "Siblings Without Rivalry", url: "https://drive.google.com/file/d/1xnYFh-hF0-dlTyb9A8wZFLXkVNkUsS9O/view" },
+            { title: "Shorter", url: "https://drive.google.com/file/d/1Yw4Lag7KW7-dmgYpivOpovO4grn0atCh/view" },
+            { title: "Shoe Dog", url: "https://drive.google.com/file/d/1LvShlQsLLHWzFMMu9YdmbfU3EnCfcW3e/view" },
+            { title: "Rework", url: "https://drive.google.com/file/d/1DLfSm8SBNRQLFy0TKTHaSO6e7Q5-HSdf/view" },
+            { title: "Requiem for the American Dream", url: "https://drive.google.com/file/d/1xvNblVsViw7_sII7Y1Yvt7t3jHDdHutC/view" },
+            { title: "Range", url: "https://drive.google.com/file/d/1vZPCUGeYRPrf3GxLsIOVOuyIvyopT0yk/view" },
+            { title: "Raising a Secure Child", url: "https://drive.google.com/file/d/1XVkmgYPJMqk764_zP_FLATaQuHfjsnX4/view" },
+            { title: "Raising an Emotionally Intelligent Child", url: "https://drive.google.com/file/d/18boPnZO6rfhW2ARlY5s5nkoEBPHRVmqJ/view" },
+            { title: "Raising Kids with Big, Baffling Behavior", url: "https://drive.google.com/file/d/1uEH6yPDWqkvR7--1kVQutNEfjlAf--Hp/view" },
+            { title: "Remember", url: "https://drive.google.com/file/d/113ZCrl9CVxO3Mx9qDbpt8KraKasxk82c/view" },
+            { title: "Quiet", url: "https://drive.google.com/file/d/14KzmILmxINpZNpqf9JFXM8cWB1EmqDd3/view" },
+            { title: "Purple Cow", url: "https://drive.google.com/file/d/19IOO5Eb1skd32V_1YqLvIxi1MC7aGvZI/view" },
+            { title: "Profit Over People", url: "https://drive.google.com/file/d/1O7SKjZyvV6q-klO57nGnN5mQWrraXZuo/view" },
+            { title: "Primal Leadership", url: "https://drive.google.com/file/d/1DeaeCepcQTwzNCCLU16WQBI6O3Lan8aZ/view" },
+            { title: "Positive Discipline", url: "https://drive.google.com/file/d/1LLJ4aCBs-1oiBm8iWVzr2kXArQZ3Rxwf/view" },
+            { title: "Positioning", url: "https://drive.google.com/file/d/1YP8tim4ZcRQFtmdqNrTJHfIAsNr4IiQk/view" },
+            { title: "Playing to Win", url: "https://drive.google.com/file/d/12042Pj4G2iPzrp51AaLbDu4UyF_ejjIu/view" },
+            { title: "Politics", url: "https://drive.google.com/file/d/1XvI1z5hMb4sWUGfSlCsZiHKf19y1Nd-3/view" },
+            { title: "Plato: Complete Works", url: "https://drive.google.com/file/d/1Sw89OYWNpWWPOC_v4fdWNjlzy6jocc3S/view" },
+            { title: "Parenting from the Inside Out", url: "https://drive.google.com/file/d/1jcdia4TGK3I24nxZRQi9Lljy5Bbj3rzx/view" },
+            { title: "Parenting With Love and Logic", url: "https://drive.google.com/file/d/1K2kmMsrjUDjSMEqa8cP8Nht_DsLCn-Cp/view" },
+            { title: "Outliers", url: "https://drive.google.com/file/d/1NTPhV6r-mygOW3hOjZrCWNRwaAnE-xZ7/view" },
+            { title: "Originals", url: "https://drive.google.com/file/d/1hKS2uKcjwSxm02eERFKmMjjzFQc4SNA7/view" },
+            { title: "Option B", url: "https://drive.google.com/file/d/1G4Dmoa3p91URaTMv9jLOaGmdxQOyUjEs/view" },
+            { title: "On the shortness of life", url: "https://drive.google.com/file/d/15Uk4ZlEjh9m58KzNkz92U8RaqT_BRRb3/view" },
+            { title: "No-Drama Discipline", url: "https://drive.google.com/file/d/1Em0z9vklYPOEwGaVm3D14-4_6OkMoPIY/view" },
+            { title: "Now, Discover Your Strengths", url: "https://drive.google.com/file/d/12YU9Actpdvu_VzXmre0sr0uxiB79asuI/view" },
+            { title: "Oh, The Places You'll Go", url: "https://drive.google.com/file/d/1CJDMNYj8SO7R0iBtrIe0aulekZDhthXg/view" },
+            { title: "Notes on a Nervous Planet", url: "https://drive.google.com/file/d/1Y-EMQH2i6qpVLjyhZvM3OZ3t9vDdJK_j/view" },
+            { title: "Ogilvy on Advertising", url: "https://drive.google.com/file/d/1yaZjXCU48e-LImhyGmewQvfRrjBXiIfs/view" },
+            { title: "No Bad Kids", url: "https://drive.google.com/file/d/1EYxIrkQcExBD4WWy6ydf3Rkb7dUi77MH/view" },
+            { title: "Move Fast & Fix Things", url: "https://drive.google.com/file/d/1jTKUiQYNW1Ag5GFqIm6lcNuFFgSg0tWh/view" },
+            { title: "Nail it then scale it", url: "https://drive.google.com/file/d/1AJozz8_Jp6Os-ey4VOLxQYq4DX7JM2xJ/view" },
+            { title: "Montessori", url: "https://drive.google.com/file/d/13JbBKxxhbRwlkIrVWA8cFb4PYc4qCiTM/view" },
+            { title: "Montessori: The Science behind the Genius", url: "https://drive.google.com/file/d/1iqthBbL95Ny1iIhNCD4KdrcgmomGUQDl/view" },
+            { title: "Montessori from the Start", url: "https://drive.google.com/file/d/1w98CxQxSfWJlvaRHK9bGY0vciOD26Po4/view" },
+            { title: "Montessori Today", url: "https://drive.google.com/file/d/1afltE7won6X3cdXoub_p06QQToaUGzuA/view" },
+            { title: "Montessori in the Classroom", url: "https://drive.google.com/file/d/1QFazmKZhNv9VpoidKViYAcWNCDPy60jP/view" },
+            { title: "Moneyball", url: "https://drive.google.com/file/d/1mowenIbFpG3clc92x4edcmshWrc14-5K/view" },
+            { title: "Media Control", url: "https://drive.google.com/file/d/1s4-PQrt6k5JG1K7wyM_opyjbhAn3kXpl/view" },
+            { title: "Maria Montessori", url: "https://drive.google.com/file/d/1KV3QaQbRISWV5E80tzPyHMBRDWBMzrIf/view" },
+            { title: "Manuscript found in Accra", url: "https://drive.google.com/file/d/1_61WJhhr1XEE5yRwhmkzJZN-Q7MNfizK/view" },
+            { title: "Mastery", url: "https://drive.google.com/file/d/1v0JA1pB7QFP4WchkSaWy8HUtL9BifW1p/view" },
+            { title: "Marketing Made Simple", url: "https://drive.google.com/file/d/1GjE0xNZEjvjkvEEhEPLHtH9N1U5FGeYB/view" },
+            { title: "Maktub", url: "https://drive.google.com/file/d/1g4eArAIwDeMtZSgACpi4rGI2ZUaJ44Yg/view" },
+            { title: "Made to Stick", url: "https://drive.google.com/file/d/1_V6GZ_CS5ctyjEJTwtkDmk6cVkf6Bfgf/view" },
+            { title: "Like the following river", url: "https://drive.google.com/file/d/1GxSUAWjWKuPbYcgInBelU9dRb-v2Rq-C/view" },
+            { title: "Letters from a stoic", url: "https://drive.google.com/file/d/12V75nn5rO2Rqj-sZivG2OXY0Q0QhjcEg/view" },
+            { title: "Lean In", url: "https://drive.google.com/file/d/1s7EISNM6VmwhPfza-rz6EjOcifJy5rM0/view" },
+            { title: "Leadership on The Line", url: "https://drive.google.com/file/d/1eEbxDsNEkteKUVXNRT7krpP2HoUJAJFZ/view" },
+            { title: "Leading Change", url: "https://drive.google.com/file/d/1SjgNehT5e0wnFYz4-fpO1AVv49qF8ltF/view" },
+            { title: "Influence: The Psychology of Persuasion", url: "https://drive.google.com/file/d/1owMekUClFn7IakBr6HCwZXYOCbNLwLLD/view" },
+            { title: "Immunity to Change", url: "https://drive.google.com/file/d/1HOzE4j-r3BZx_e6-1UhRo6g1n-1fPfYU/view" },
+            { title: "In Search of Excellence", url: "https://drive.google.com/file/d/1qqBmuN4iPIlmIG3gy-9I-RLBLMNh03x-/view" },
+            { title: "Idea to execution", url: "https://drive.google.com/file/d/1muqfJPIIDtmIRwDxRyn3b9IyDugE0yiW/view" },
+            { title: "I Don't Have enough faith to be an atheist", url: "https://drive.google.com/file/d/10r6wkqArSPrP1czVfxvJ_MJ10e401o8b/view" },
+            { title: "Humour, Seriously", url: "https://drive.google.com/file/d/14dEFLZX19RxVjrQI4MQ3KfkMj2OpW10Y/view" },
+            { title: "Hunt, Gather, Parent", url: "https://drive.google.com/file/d/1w6l3-9mR82Q2FAm2EFMpTBlCrfXuDfgd/view" },
+            { title: "How to Win Friends and Influence People", url: "https://drive.google.com/file/d/16v_KUgyO_sx_91xKIFVts0Wr4mjj-Z0G/view" },
+            { title: "How to win an election", url: "https://drive.google.com/file/d/19i8yv_Dpkhugf4xjFfJRrDmUPgXMv-qr/view" },
+            { title: "How to Talk So Teens", url: "https://drive.google.com/file/d/1CfhpzwmSxy0SLbowlE9PdWgH2x8ObNnj/view" },
+            { title: "How to tell a story", url: "https://drive.google.com/file/d/1eakDjmiFKkIH8Z0NkJOsBcbdOe1pRZF_/view" },
+            { title: "How to win an argument", url: "https://drive.google.com/file/d/15ip0yRmM6U_fzNdEbxhl-VCNw6yttM_N/view" },
+            { title: "How To Raise An Amazing Child the Montessori Way", url: "https://drive.google.com/file/d/1LE5I7Dmtv2Y4NCTrh6HkH9HdlPPFgSjx/view" },
+            { title: "How to say No", url: "https://drive.google.com/file/d/1v83QxDmLgukSKzJ8HVl61IQIMPassBQY/view" },
+            { title: "How to make people like you in 90 seconds or less", url: "https://drive.google.com/file/d/13dlUZ5KSPenBf2VUhCaXIVdF_lSHaGYH/view" },
+            { title: "How to Innovate", url: "https://drive.google.com/file/d/1vahy2Kb2n0iLndUbajYnxzS6urz38-76/view" },
+            { title: "How to keep an open mind", url: "https://drive.google.com/file/d/14IDCEH8Kv-T2ZYNQH_UlLY1gNazH7bZy/view" },
+            { title: "How to do the right thing", url: "https://drive.google.com/file/d/1th0Zmc4mEKI08May5bnO6rsY5gjR5tAp/view" },
+            { title: "How to be Free", url: "https://drive.google.com/file/d/1sO5v5iCdb5_-6mhww55kltuzfSCfPQvC/view" },
+            { title: "How to be content", url: "https://drive.google.com/file/d/1Qvj-zNpaVYtcjJDedn37QQuKDmdSqqrD/view" },
+            { title: "How to be a leader", url: "https://drive.google.com/file/d/1r61_J9zbw5xVx6rCfHAfY5QavkYpNFMs/view" },
+            { title: "Hold on to Your Kids", url: "https://drive.google.com/file/d/1B-8QBx0FikYDYYTeUQ5wCZC6iE7zUy0h/view" },
+            { title: "How Children Learn", url: "https://drive.google.com/file/d/1MsywOmvKakbJot5UB0JI_nKy6FEUMqWL/view" },
+            { title: "How to be a friend", url: "https://drive.google.com/file/d/1xNhcVFUSNRcTzK8xFS78SLtcI3i3BZFS/view" },
+            { title: "Hippie", url: "https://drive.google.com/file/d/1jxuhJijremWkFCjPjNkrgrYJUZ5dPAvx/view" },
+            { title: "How the world works", url: "https://drive.google.com/file/d/17PugbEuoLa9u8MxR2YFK9Ekhc4Q_g4l2/view" },
+            { title: "Hamilton", url: "https://drive.google.com/file/d/1FDSWfmExb4ThmXTTwZSGn1YgiTBIsGPF/view" },
+            { title: "Hegemony or Survival", url: "https://drive.google.com/file/d/1E1aFfGSHoB4WTiXmICBjw92ZRhrMTXlj/view" },
+            { title: "Grit", url: "https://drive.google.com/file/d/1Skye70g1YEjZ-KyA-ajNCGUo5IlqplYG/view" },
+            { title: "Great by Choice", url: "https://drive.google.com/file/d/1v4cuBn-Ezm8l17XiR2sozKOoKssoNaE-/view" },
+            { title: "Guerrilla Marketing", url: "https://drive.google.com/file/d/1buZl2yAzOELyxICvTLSK_LVK26qJGnqL/view" },
+            { title: "Good Inside", url: "https://drive.google.com/file/d/1iKwf2C9uWdODv9Vlrg26clif56Hx5dkN/view" },
+            { title: "Good To Great", url: "https://drive.google.com/file/d/1ex6D86MzBSGsB3m_3TKwzEH6J53AJU_W/view" },
+            { title: "Girl Decoded", url: "https://drive.google.com/file/d/1EdELxYeE0A7sDGrC-h3WRBi6jy46bJkt/view" },
+            { title: "Getting to Yes", url: "https://drive.google.com/file/d/1gi5VaX__cPm1ZNk9IU3UOmKdxKEbU8sm/view" },
+            { title: "Getting Things Done", url: "https://drive.google.com/file/d/1NzsfzPLorBaTIKRItb1mB1SzPhgH3WVW/view" },
+            { title: "Get Out of Your Head", url: "https://drive.google.com/file/d/1niJkEDeO0V-gfteyzi74ytGqR_PSmZIr/view" },
+            { title: "From Childhood to Adolescence", url: "https://drive.google.com/file/d/1Dk2sixkLKS7G3zTmZ5UcvMytjJ2-Fk2U/view" },
+            { title: "Freakonomics", url: "https://drive.google.com/file/d/1ME4BC2aeOzZgpDIcwWy1mZ7s4g0yjuy_/view" },
+            { title: "Flow", url: "https://drive.google.com/file/d/1G5YoTpFxL56ol4X9ePyFOXvk_Fz9drsU/view" },
+            { title: "First, break all the rules", url: "https://drive.google.com/file/d/1yv5GOAOI30rMYL25M5I9uuX7YrA7IvI8/view" },
+            { title: "Financial Intelligence", url: "https://drive.google.com/file/d/1wMM19vTJwlDR8vUJ5LgEL9bFB4QANpaY/view" },
+            { title: "Execution", url: "https://drive.google.com/file/d/14UoA0XGsD3SdReTZyqQoHV772mu4TigG/view" },
+            { title: "Everything Is F_cked", url: "https://drive.google.com/file/d/1EW4RmDU35twPOzpK89HXrqDVcej2yenU/view" },
+            { title: "Education For A New World", url: "https://drive.google.com/file/d/1mKZLqSBwSN53oxMdy_ByZ1Z2CVpcZb1F/view" },
+            { title: "Eleven Minutes", url: "https://drive.google.com/file/d/1viF-6JX60BEzCoi87eq9tlsKyzuYP2MK/view" },
+            { title: "Dr. Montessori's Own Handbook", url: "https://drive.google.com/file/d/1MtWXpM0lpJM72RQ6mDWYThwt-FQ7nonr/view" },
+            { title: "Emotional Intelligence 2.0", url: "https://drive.google.com/file/d/1vlEEmaErpFHn5ZHt-dhCAuhEtLsuMU6E/view" },
+            { title: "Essentialism", url: "https://drive.google.com/file/d/1JER9KGGHp_UZFElVl8BHPvPz4RILQL-F/view" },
+            { title: "Drive", url: "https://drive.google.com/file/d/1AixNaBE8A5uH82AA2TKJTTuCkwuuQafb/view" },
+            { title: "Doughnut Economics", url: "https://drive.google.com/file/d/18eiwTNv2aT-WJw5cvKSB7FJuNEWIpJPD/view" },
+            { title: "Education And Peace", url: "https://drive.google.com/file/d/13fWQlcju2zc0qNLJGNTQy4vCD36G6Tp_/view" },
+            { title: "Don't Overthink It", url: "https://drive.google.com/file/d/1SdAEZyzm35kEoC4DSuIRMUt6eP2X7ViY/view" },
+            { title: "Discourses and Selected Writing", url: "https://drive.google.com/file/d/1L4qImOT8orDMQrmZjx_2GqzO-8900Khh/view" },
+            { title: "Delivering Happiness", url: "https://drive.google.com/file/d/1GJopPrRgmYfQsQV3PSVXUp_PicxW3C96/view" },
+            { title: "Deep Work", url: "https://drive.google.com/file/d/1RV38YjJS0pqoJXr6ntdkRR5R_IUdK4e9/view" },
+            { title: "Decisive", url: "https://drive.google.com/file/d/1kp7gojyCAikFbEqDAsO-aEy5fUuhyTFA/view" },
+            { title: "De Anima", url: "https://drive.google.com/file/d/1EMlHU3c1PtJn27ZkbT2MtXHBTWS7bbN6/view" },
+            { title: "David and Goliath", url: "https://drive.google.com/file/d/1ujIMs32jgmgN1QnUa3tba3sqsC_mylqu/view" },
+            { title: "Dao De Jing", url: "https://drive.google.com/file/d/1YdZtBIeH06I5dWvGOnIh8ozMpi38eTN2/view" },
+            { title: "Crucial Conversations", url: "https://drive.google.com/file/d/1jSGP9eN4MypwDdIXLD9bWlUcJnFIdOd7/view" },
+            { title: "Competing in The Age of A.I.", url: "https://drive.google.com/file/d/19ZJoAucn18o6PvOuyRaQyH9AGrfef0-f/view" },
+            { title: "Built to Last", url: "https://drive.google.com/file/d/1DL8-Fw-dd7uwvGT2zSR9M0ch_Wxf-7se/view" },
+            { title: "Common Sense Book of a Baby", url: "https://drive.google.com/file/d/1pLHeeeBQjzRTMRWR8ogYKBwdRv9REqim/view" },
+            { title: "Creativity, Inc", url: "https://drive.google.com/file/d/1nqVLQt8ecXxKB0T5xfsk4aD4NUpXgylv/view" },
+            { title: "Crito", url: "https://drive.google.com/file/d/1ekcOYc9RugMyUwlRa-eqsM2OeW5N8v03/view" },
+            { title: "Buy Yourself the F_cking Lilies", url: "https://drive.google.com/file/d/1AtYBPYC4-i_NjsRcjUYwo26et8Y87jzr/view" },
+            { title: "Business Model Generation", url: "https://drive.google.com/file/d/1a0O9PzfhxWsBEnt0FA15Pc28Cy-sr42L/view" },
+            { title: "Business Adventures", url: "https://drive.google.com/file/d/16sCiTR_6zFJR-jDgz_J4HDzDdZmxQHwS/view" },
+            { title: "Business Made Simple", url: "https://drive.google.com/file/d/1Mp0jl-WrmNKt1cLnWs9fCnVwT8kW4Q9a/view" },
+            { title: "Brainstorm", url: "https://drive.google.com/file/d/1zMZ7PAsLwYcdyjes-X1aVUtxxIKm6KGJ/view" },
+            { title: "Building a Story Brand", url: "https://drive.google.com/file/d/1u5yc9cUllyMTh2KcK5mDFjzfqUdEb8-f/view" },
+            { title: "Blue Ocean Strategy", url: "https://drive.google.com/file/d/16hFvKjcz8DLqnu0fuZQBdsiEUuj6cuUJ/view" },
+            { title: "Blink", url: "https://drive.google.com/file/d/1oZmv4it_-88piS6ZqPpdeBK2-ZVMyyBH/view" },
+            { title: "Better Than Before", url: "https://drive.google.com/file/d/13d0YMp7CbPUvy21_ZhHeHnGSjYihLRKG/view" },
+            { title: "Bad Blood", url: "https://drive.google.com/file/d/1h39DGJb5Qx-aWZlaEaR5TlTWR5jWRMcF/view" },
+            { title: "A History of God", url: "https://drive.google.com/file/d/1ZOHF2xLxIBBtuBJX8l2JhDgjQfhO48kK/view" },
+            { title: "Accountable", url: "https://drive.google.com/file/d/1OCwdbjUID0XJqcp3ajETmhs31PhiytON/view" },
+            { title: "Animal Farm", url: "https://drive.google.com/file/d/1bMBxR3fa5n4d7JF3ix-PWGHrd3aqcBC_/view" },
+            { title: "All Marketers are liars", url: "https://drive.google.com/file/d/14lQh-quUIpIFONYDLgzh57PS7y7vRJsR/view" },
+            { title: "Aware", url: "https://drive.google.com/file/d/1xMSqephN1ku5Pjw5hfLZOei1X8zlOE1O/view" },
+            { title: "A Whole New Mind", url: "https://drive.google.com/file/d/1_A4Gcvkrw5D8Hwu66Sbvm0rt5mY51qhk/view" },
+            { title: "Awaken The Giant Within", url: "https://drive.google.com/file/d/1IqjJH3m0xbjzdrYkx68-r3r97FiM4pJt/view" },
+            { title: "Beginnings", url: "https://drive.google.com/file/d/1JckaCAPbwWSza6uu2yK4uojzFzcYINs_/view" },
+            { title: "Apology", url: "https://drive.google.com/file/d/1NJ4MM-H-EDGpuwdai0jzYbOyizDFJh8H/view" },
+            { title: "48 days to the work you love", url: "https://drive.google.com/file/d/1Q5Uh0v5P0_GNR3lvqZ2U1O7Z0d8yx6Md/view" },
+            { title: "A Boy Called Christmas", url: "https://drive.google.com/file/d/1i-2_gQmjNrkyWG4T4ca7N81vucQx23_w/view" },
+            { title: "21 Days to a big idea", url: "https://drive.google.com/file/d/1ZJTmESEkru6f-4nvSCB8nCr1oGhnWh-D/view" },
+            { title: "Alibaba", url: "https://drive.google.com/file/d/14qnFsC2D4Kgf28NmehJC8aJX70FA4mB8/view" },
+            { title: "15 Secrets successful people know about time", url: "https://drive.google.com/file/d/1Af3VmNPwDXHlhOCyaJSzox0pCn_VqsZo/view" },
+            { title: "The Spy", url: "https://drive.google.com/file/d/1tuR3RbF2XO70wRwX_gSqfMan7YKfzXkq/view" },
+            { title: "The Strength in Our Scars", url: "https://drive.google.com/file/d/1FPHfCkhxqkXLHoqulUWuNMxIZdVGjLOE/view" },
+            { title: "Finance 102 for Kids", url: "https://drive.google.com/file/d/1LhXSzRWFe-H_9_-iuiAUBRiSkGOoEXr0/view" },
+            { title: "Finance 101 for Kids", url: "https://drive.google.com/file/d/1_K-0EuMX7GcdaRYx0ITu50oahYmKuZf3/view" },
+            { title: "Warrior of The Light", url: "https://drive.google.com/file/d/1vxSutgk5HfY3zbEqNhyzd1S9rWfofmr3/view" },
+            { title: "Reasons to Stay Alive", url: "https://drive.google.com/file/d/1zMaC4TVdAqX8fEWas-9tb8ILfXPsTzd_/view" },
+            { title: "The Fifth Mountain", url: "https://drive.google.com/file/d/13blrRA-xPDn7R3ASjrV8hqkKwbi6SRvH/view" },
+            { title: "A Gentle Reminder", url: "https://drive.google.com/file/d/1ngXZmrP9yHkT8d8-9f4kt4_RSz_PE5MX/view" },
+            { title: "Adultery", url: "https://drive.google.com/file/d/1g1TOJq5vglDcV4gJzMzWkO4_AqZZjhEa/view" },
+            { title: "The Life Impossible", url: "https://drive.google.com/file/d/1r8PDztoCYXOqKJbT4t-O4mA1NnhGvo-0/view" },
+            { title: "The Pilgrimage", url: "https://drive.google.com/file/d/1rYmWtnksM3rRQqDXKuVlXqOa-TBAr9Rn/view" },
+            { title: "I Decided to Live as Myself", url: "https://drive.google.com/file/d/17ckrhn7neVzgVjuKfWksd1C3GjcdNjFI/view" },
+            { title: "The Devil and Miss Prym", url: "https://drive.google.com/file/d/1cRJqH7IoYl7AQ-Z5iZmH7oRrmRAMYZW8/view" },
+            { title: "The Humans", url: "https://drive.google.com/file/d/1f--Y29PaLx5HnjzlRYOQjPWhFx5-pxLS/view" },
+            { title: "Brida", url: "https://drive.google.com/file/d/1k_ibxHCTQAAjzacS9SN0yi7lJU5sqzqw/view" },
+            { title: "This is me letting you go", url: "https://drive.google.com/file/d/1wt1qQ4X8HrZUILclAITQWxlBD7wYUi86/view" },
+            { title: "The Zahir", url: "https://drive.google.com/file/d/1MBnkUjrzYZ-4hYlJmoM5MphLfjuJsQRz/view" },
+            { title: "How to Stop Time", url: "https://drive.google.com/file/d/1nJnyN5h3Ev-9W-A1h4KKQkBGFNIC_arq/view" },
+            { title: "The witch of Portobello", url: "https://drive.google.com/file/d/1uGQ2tPdnY0GQz08ly_nyX3JZq-U9cGxi/view" },
+            { title: "I Want to Die but I Want to Eat Tteokpokki", url: "https://drive.google.com/file/d/1QU6mHUHw6cJC1XE88XlqP-h2zcmqXtEy/view" },
+            { title: "By the river Piedra i sat down and wept", url: "https://drive.google.com/file/d/1iVH3h1yP7BBvcHr-E7h9nOaDTM4UzvoU/view" },
+            { title: "The Midnight Library", url: "https://drive.google.com/file/d/1xer9ZrFU1Tc-W8YGPFGSz4lgbymksl7s/view" },
+            { title: "Aleph", url: "https://drive.google.com/file/d/1x177IubzaYnL4Gfj_9Ad-Y0BNcvahgBs/view" },
+            { title: "Same as Ever", url: "https://drive.google.com/file/d/1SRY92xeClTvJD2Is5hrF-oeotZCJ6wag/view" },
+            { title: "Gulp", url: "https://drive.google.com/file/d/1tk0lXIlZChMlvLfvMXnf8MHxwdFGDI2c/view" },
+            { title: "Packing for Mars", url: "https://drive.google.com/file/d/1uoWdMhHjs6LP4k8igaVq01aXL8sMH7Rb/view" },
+            { title: "Stiff", url: "https://drive.google.com/file/d/1BW4FgWMw5lFQJammCpd7oZQhFWw_XPSw/view" },
+            { title: "The Book of Hope", url: "https://drive.google.com/file/d/1zrSJSdZ3-3boKdlPCMJFcWY82P_pI62M/view" },
+            { title: "The Comfort Book", url: "https://drive.google.com/file/d/19vZo4EQBfKJjC-UixO6dpfS9AKu9gjGm/view" },
+            { title: "The Anthropocene Reviewed", url: "https://drive.google.com/file/d/1yT6CQdqtjhyK6dnbFVC4-R2QPWVMa-AD/view" },
+            { title: "Building a Second Brain", url: "https://drive.google.com/file/d/1p627HVbptLaKP0lL8FslCs7YzukP_-BC/view" },
+            { title: "Lost Connections", url: "https://drive.google.com/file/d/1kMLxkbJnMC154zsS3VnMFjVCqiYRUrwb/view" },
+            { title: "Stolen Focus", url: "https://drive.google.com/file/d/1iUkTWdFOgNXxZexPrSwOVE34DLplrTlL/view" },
+            { title: "Thinking In Pictures", url: "https://drive.google.com/file/d/1oKPci5KFyxnmASbnfGkCVmUOV9a8TDDv/view" },
+            { title: "The Song of the Cell", url: "https://drive.google.com/file/d/1t6kqrkjE5t73L5bQXOZMOruxcIVLzMFV/view" },
+            { title: "The Gene: An Intimate History", url: "https://drive.google.com/file/d/1GVHqMuNYlvbZKVm4kj6VvtBlxY_B5HeO/view" },
+            { title: "The Emperor of All Maladies", url: "https://drive.google.com/file/d/1qUeVmhC4tOnTmZ-pBX4EQEbburpOuRr4/view" },
+            { title: "The Power of Regret", url: "https://drive.google.com/file/d/1Eh1MdhM7-4UTfF1Jp5ITHTr9r70Fv6op/view" },
+            { title: "To Sell is Human", url: "https://drive.google.com/file/d/1b9RmjbayBAQcdNCa7iiEEgnncddRleMg/view" },
+            { title: "I Contain Multitudes", url: "https://drive.google.com/file/d/1uiYxYornSZBQ0iXcvhFctLjth4LvywH6/view" },
+            { title: "An Immense World", url: "https://drive.google.com/file/d/1hDoEFLt9WOOT8yNtxVbXLENvuhFeBcTA/view" },
+            { title: "Bittersweet", url: "https://drive.google.com/file/d/1XtGtZQfaOcFsp1g-J_K8IBga6TTj7eiw/view" },
+            { title: "Starry Messenger", url: "https://drive.google.com/file/d/1VtdcWXqSNA_9lyLm07t8rB08QNZIcdel/view" },
+            { title: "The Myth of Normal", url: "https://drive.google.com/file/d/1kjIEgxr_oPGPbMbdndu0tVSyXni2Wgdt/view" },
+            { title: "How to Be Perfect", url: "https://drive.google.com/file/d/1tUbe2k5FuYksqp4R817PKlR8_d7DDyw5/view" },
+            { title: "The Good Life", url: "https://drive.google.com/file/d/1mG2mRwWD7tFp7-sI7nN6UMM8czMKqGyh/view" },
+            { title: "Never Finished", url: "https://drive.google.com/file/d/1pYpWV6aevq7mHuby5-7s2jOsDs3_GplS/view" },
+            { title: "Build the Life You Want", url: "https://drive.google.com/file/d/1m-hypCajNfaUjLDegX7uC2w60qLsWywX/view" },
+            { title: "Ultra-Processed People", url: "https://drive.google.com/file/d/1n2HoSHYp246ZiCgvW8DwdVQejtBPSLyi/view" },
+            { title: "8 Rules of Love", url: "https://drive.google.com/file/d/1ox98XDsPWa7mzrWBX1vPvaTqpb4jSvex/view" },
+            { title: "Think Like a Monk", url: "https://drive.google.com/file/d/1hVEGvwc14XLpEVUQhudkCiAhmRy8p3hW/view" },
+            { title: "Meditations for Mortals", url: "https://drive.google.com/file/d/1v0yaL0qLFkTRyA8TCLOjV-eMmQw_rM_W/view" },
+            { title: "Supercommunicators", url: "https://drive.google.com/file/d/1vPQDi28vGhKMj5eiYyx0T56s4Q2aK0IG/view" },
+            { title: "Feel-Good Productivity", url: "https://drive.google.com/file/d/1VTFwuSjiiHcW66NXQgJfRhL4tvZNJfHV/view" },
+            { title: "Nuclear War", url: "https://drive.google.com/file/d/1XOZ5nJZQsiFSgcAZEv-pGbdzO3wG3jtl/view" },
+            { title: "All in Her Head", url: "https://drive.google.com/file/d/1nfaT8T8oLowGwPONrWGaJi68oc4Pf-Ge/view" },
+            { title: "Want", url: "https://drive.google.com/file/d/1fJxGH0MaUL9D9F027bjW5ItXTGLzLytN/view" },
+            { title: "The 5 Types of Wealth", url: "https://drive.google.com/file/d/1_lgkaQ0WUimuKz4a52LZAV_HlVOpmi7e/view" },
+            { title: "Are You Mad at Me", url: "https://drive.google.com/file/d/1rFx-hfz_Jh58K6tcQTUqsTLu5-bXKcPb/view" },
+            { title: "Between Two Kingdoms", url: "https://drive.google.com/file/d/1xZntDlikskUByeLDeeHvFN5sL9Uc8PTS/view" },
+            { title: "Abundance", url: "https://drive.google.com/file/d/1oMkGhyLkhAxFNXItybBAemRoXY_M-_vf/view" },
+            { title: "The Art of Spending Money", url: "https://drive.google.com/file/d/1xCJSN9yWKhndiwrhQiZ418bAhkL2zEk7/view" },
+            { title: "Everything Is Tuberculosis", url: "https://drive.google.com/file/d/1vZrJJeD-TaeNhxYFE72Lkv6yoYU8lOHT/view" },
+            { title: "No More Tears", url: "https://drive.google.com/file/d/1PjDbcdC7VkM9NfbE5su3aaFgcdKNQsic/view" },
+            { title: "Life Without Limits", url: "https://drive.google.com/file/d/1_mGCmwucGkyzCBQYR9II68CEjMyF9Fyj/view" },
+            { title: "The Art of Letting Go", url: "https://drive.google.com/file/d/1Hdn2OQ17IJrq4iC-21kCmfd_37sDgauW/view" },
+            { title: "Boundaries", url: "https://drive.google.com/file/d/1pqwterC17WAFiNbdMJIrbdpTXS5rPvE2/view" },
+            { title: "When You're Ready, This Is How You Heal", url: "https://drive.google.com/file/d/1dRnlCcpvZAF3a3nTWF19JeFA0akzjiM5/view" },
+            { title: "The Pivot Year", url: "https://drive.google.com/file/d/18kh-gRoy85l43I9ffJNWyY8HiH0-if0C/view" },
+            { title: "The Ruthless Elimination of Hurry", url: "https://drive.google.com/file/d/1VAgqXZ6FGDrO9H3Ft69WNnp6_XZPf8RO/view" },
+            { title: "Mindmasters", url: "https://drive.google.com/file/d/1VKKB77pRI4TEDpFayW0y7CXUOeUqXjit/view" },
+            { title: "Nonviolent communication", url: "https://drive.google.com/file/d/1S7o87oIb1240DigSu_SaW-LyD-P2vg8W/view" },
+            { title: "Surrounded by psychopaths", url: "https://drive.google.com/file/d/1rBLayF5Rbk5_ko83BPFDSlsNAuSviXuL/view" },
+            { title: "I Thought It Was Just Me", url: "https://drive.google.com/file/d/1TMtNn64tA957ymq0I9dy4zAEQ8A_enV4/view" },
+            { title: "The Code of the extraordinary mind", url: "https://drive.google.com/file/d/1jnqjxuhPqjKRaUT-TLumh0YYgN42FcN6/view" },
+            { title: "Company of One", url: "https://drive.google.com/file/d/1MoSlO9HxEmyJ482CgSr_jf6EdnvgiZSe/view" },
+            { title: "Strong Ground", url: "https://drive.google.com/file/d/1Spe9Ezjn3cEkATCLacYAz_2aVV2UwAoQ/view" },
+            { title: "The Obvious Choice", url: "https://drive.google.com/file/d/1kDKKvm3CBCJ5Y7HYtpbe0pKnQu6_Fi9h/view" },
+            { title: "How to have confidence and power in dealing", url: "https://drive.google.com/file/d/1ld6dsBO02hXK7SOnInw7HYLDxG-VnfKl/view" },
+            { title: "The Power of vulnerability", url: "https://drive.google.com/file/d/1kETQm7tTnZzx8QPtnTIeIiiwCYdB7ufj/view" },
+            { title: "Games people play", url: "https://drive.google.com/file/d/1tmOlX6YDfXJxQLBi4K7KkhrZvcGfhzqL/view" },
+            { title: "Emotional Habits", url: "https://drive.google.com/file/d/1o7kzR8c2PEKKCCZmd3goM22hWppGNZ9W/view" },
+            { title: "Rising Strong", url: "https://drive.google.com/file/d/1tm868wZCwaRAD2xMlq6-ZDFsqag4JvId/view" },
+            { title: "The 10 pillars of wealth", url: "https://drive.google.com/file/d/1Nu7B0XCSWHBtkjb1SfYnbHO9A5kNp-xB/view" },
+            { title: "Good Habits, Bad Habits", url: "https://drive.google.com/file/d/1mVcwpbCbOK11co3PvirEIRS8KzIf1FSQ/view" },
+            { title: "Make Your Bed", url: "https://drive.google.com/file/d/1bCOyO9JrXYCISkjT67KIdR1DlbdnUBVK/view" },
+            { title: "Expert Secrets", url: "https://drive.google.com/file/d/1ezWfs6S8618707vxMpdzSvFWoDf9zcqS/view" },
+            { title: "The Story of the human body", url: "https://drive.google.com/file/d/1GIf38iVUgkLpSTOe6deNz78svsCnDN8j/view" },
+            { title: "The empathy effect", url: "https://drive.google.com/file/d/1V2CNi5duEoHnRzy1SRhlqom_3BNHXeT1/view" },
+            { title: "Evolutionary Psychology", url: "https://drive.google.com/file/d/13aHpVVy4kA5aDQ2pztDJbRAK3v7jTF9G/view" },
+            { title: "Don't Sweat small stuff", url: "https://drive.google.com/file/d/1ZiFAkwWrdw-VWH3C2x9fJ-2EIR2cDP1Y/view" },
+            { title: "Atlas of the Heart", url: "https://drive.google.com/file/d/1yf7087-GtofEi6J55b3iDpXwrICW9m5I/view" },
+            { title: "How to be a genius or the science of being great", url: "https://drive.google.com/file/d/1I_q8dLpEyDIAVtbC33K4w356Po6lHLuU/view" },
+            { title: "Talk Like Ted", url: "https://drive.google.com/file/d/1qbV06z3n4PRvEBT5cm8_v8By040tJbpg/view" },
+            { title: "Braving the wilderness", url: "https://drive.google.com/file/d/1tvg_VPKVVJ-LPj8LBeqWYd6hvjHnaDCn/view" },
+            { title: "Finish what you start", url: "https://drive.google.com/file/d/1SSb2EaGIccPALwkpoPoXn3-ZTZwDHy8M/view" },
+            { title: "Measure What Matters", url: "https://drive.google.com/file/d/1yEXxFeNyzrDVhiEwIh8iqjT4oqM5kIxk/view" },
+            { title: "Dare to lead", url: "https://drive.google.com/file/d/1mRV8xHk1foAnr5au7xHoEYQz3z1Yao4x/view" },
+            { title: "Notes from underground", url: "https://drive.google.com/file/d/1YgyWQQfL79uN82YjpHGStla0hSBWNhGJ/view" },
+            { title: "Rebuild Yourself", url: "https://drive.google.com/file/d/1rk8jG9CrLWPNVT0DmwnPQUleHQ_KXX5I/view" },
+            { title: "The Intelligence trap", url: "https://drive.google.com/file/d/1mpi43FkzCWU20Tdjn8BMIl9Xvcbvvi4i/view" },
+            { title: "The Boy, The Mole, The Fox and The Horse", url: "https://drive.google.com/file/d/1i7lKnWzIEta6LCbFNHHejEGWi61KDH67/view" },
+            { title: "Collaborating with the enemy", url: "https://drive.google.com/file/d/1S8sxQDj0UzEhBIaaJybztpPq-jmeKSCk/view" },
+            { title: "Focus", url: "https://drive.google.com/file/d/1diny4LOXJT3b6Zx1UbrnOLmUX0ugU1pL/view" },
+            { title: "How to read a person like a book", url: "https://drive.google.com/file/d/1bBa3q4HRyOR32jPg5owMiunkntRg0n4T/view" },
+            { title: "Becoming", url: "https://drive.google.com/file/d/1iGdgWOlr-j1ci7D2moqjGSWCecu2537e/view" },
+            { title: "Long Walk to Freedom", url: "https://drive.google.com/file/d/1GdNKc1FS8OniH1vaUDrc1XW0vEAKIKq1/view" },
+            { title: "Come into my trading room", url: "https://drive.google.com/file/d/1c_eMePrGsRPuUUBcWuDXb87UT7NQc_Ci/view" },
+            { title: "Buyology", url: "https://drive.google.com/file/d/1m2hHN2wWAQZRklGjU3_9wwpe3N8GS_Tv/view" },
+            { title: "The Secret", url: "https://drive.google.com/file/d/1sr6JPC-KdZW1HU3BiqFcF1yl3kSnyQsh/view" },
+            { title: "Naked Economics", url: "https://drive.google.com/file/d/1xcPtscmFoSSUeQ1pbj0sR-dsk2ylyvzW/view" },
+            { title: "Year of Yes", url: "https://drive.google.com/file/d/1xQ73cmXVkXltglHvk9R7bBLnec27PMwf/view" },
+            { title: "Launching a Leadership Revolution", url: "https://drive.google.com/file/d/1jUPi_YXwyddk62hXGuzSfOQNYhUrTHlY/view" },
+            { title: "Leadership Challenge", url: "https://drive.google.com/file/d/1emb62cw2rzK4HcTK8xtYpZiKQmHMMTob/view" },
+            { title: "Secrets of the Millionaire Mind", url: "https://drive.google.com/file/d/1Rc3UE6BU79L9Y1iS0S5EJUHLB59zbRqf/view" },
+            { title: "The Things You can see only when you slow down", url: "https://drive.google.com/file/d/1RCnIM5-rSwYPCK9q7qVt222B_GUMgCvP/view" },
+            { title: "Enchantment", url: "https://drive.google.com/file/d/1c7gtTceHDWFbHsl_8qfTzLpZDgs7hzko/view" },
+            { title: "Crossing the Chasm", url: "https://drive.google.com/file/d/1wPrI86KquI13g2CqBRt1p8RmZlgm0iS8/view" },
+            { title: "Nexus", url: "https://drive.google.com/file/d/1Vf2tVuXJCVS7q-uq0EsKIVA6Zskx-Oqv/view" },
+            { title: "Personal History: A Memoir", url: "https://drive.google.com/file/d/1mdn8giKZmorA8Q1-P0siG-MlbqhD-PWu/view" },
+            { title: "Hit Refresh", url: "https://drive.google.com/file/d/1Z2IAR9bzfe6GBN2n_vq1sNWLmPjeZvgl/view" },
+            { title: "Happy Money", url: "https://drive.google.com/file/d/1W9UJUcIPwhLVOTtqND0Q2CscVsZBDsxj/view" },
+            { title: "Good Strategy Bad Strategy", url: "https://drive.google.com/file/d/1lZkZEySJNjtAU2gbryDNYcuf4MpKqMMW/view" },
+            { title: "The (7L) The Seven Levels of Communication", url: "https://drive.google.com/file/d/1zcj4GPXjfcP2GNcU0lNwI5KZwm123Wfw/view" },
+            { title: "Selling the Dream", url: "https://drive.google.com/file/d/1saR369X2_IwJUyyF-iPguNAOfrB0-x-Z/view" },
+            { title: "Balanced Scorecard", url: "https://drive.google.com/file/d/1fM0-uoppUoQDQ8b1a4eR5cdUUOv1fOoF/view" },
+            { title: "Factfulness", url: "https://drive.google.com/file/d/1pE_oZBlsFcbseywdMc_7KOaoI53ET7wQ/view" },
+            { title: "Don't believe everything you think", url: "https://drive.google.com/file/d/1cNmtSetxKEq5k3rJ2DfAQsfEIYpP7qr3/view" },
+            { title: "The Road Less Stupid", url: "https://drive.google.com/file/d/1RCKiSXM_R4AQvwqB0AAjCSUI2w1xD028/view" },
+            { title: "The Ride of a Lifetime", url: "https://drive.google.com/file/d/1v3wrB1c6_tYH9PAaOzVdMHCs1vWAwbx9/view" },
+            { title: "Big Panda and Tiny Dragon", url: "https://drive.google.com/file/d/1TFD1p7Gvmwao8G20QHTqmCuF-_Tn24H9/view" },
+            { title: "Getting Naked", url: "https://drive.google.com/file/d/1rtxROzdTkI4BbHoqMnQOb6M_BB8hRM7C/view" },
+            { title: "Little Black Book of Connections", url: "https://drive.google.com/file/d/1PCrGMWNo8tIbfy-TtkvnKG_uKZi0EEdZ/view" },
+            { title: "Selling the Invisible", url: "https://drive.google.com/file/d/1myk5Z1GY4de49sOdUS0XLKBMDH4lEuYY/view" },
+            { title: "Leonardo Da Vinci", url: "https://drive.google.com/file/d/1y_XWip7w79oq3VG8_WPUKjRFNTdznnM5/view" },
+            { title: "The Innovators", url: "https://drive.google.com/file/d/1hm67A-qplE8E_SrQoYs78co8dBZqlApE/view" },
+            { title: "The Code Breaker", url: "https://drive.google.com/file/d/1o_BImBEjxfQFU5TqBRT790cE77gtb-AS/view" },
+            { title: "The Courage to Be Disliked", url: "https://drive.google.com/file/d/1XM3-r5-tBHmgFrVpSuUuWsg8F3Cg4a55/view" },
+            { title: "Swim with the Sharks Without Being Eaten Alive", url: "https://drive.google.com/file/d/1rVeWpdAcpr7g6Ak3bc6i27b0GeKSG7d6/view" },
+            { title: "Benjamin Franklin", url: "https://drive.google.com/file/d/1UFE7pxfsfyL3p_cShHWSom7vnVTtUM89/view" },
+            { title: "Einstein: His Life and Universe", url: "https://drive.google.com/file/d/1h0jyIHVRcGuWL9KDT8hGgcMNyJqTArfJ/view" },
+            { title: "12 Rules for Life: An Antidote to Chaos", url: "https://drive.google.com/file/d/1J4RSTxeyG4H30fFsU8JqiPKB0psWpuip/view" },
+            { title: "The Success Principles", url: "https://drive.google.com/file/d/1fulT6pc7lm8yIJAfqe-eNcQmzId_5wc7/view" },
+            { title: "Will", url: "https://drive.google.com/file/d/1dNU37rCYXEd6c_ZFicxLAyFnM-XCCd9l/view" },
+            { title: "Man's Search for Meaning", url: "https://drive.google.com/file/d/1R_48SB0yBgemkMZO9EFvj8eBok_HFBnt/view" },
+            { title: "12 Months to $1 Million", url: "https://drive.google.com/file/d/1IWcNIMMOyk74dJ6FyDkGP5Z0l_SC66kw/view" },
+            { title: "The Speed of Trust", url: "https://drive.google.com/file/d/1FWCII0llL5bslDCfUDjHc6EnyOK55XRD/view" },
+            { title: "The Body Keeps the Score", url: "https://drive.google.com/file/d/1tKPFaiwfbw_Su9CnjOn3ZXk6kRMjsH-2/view" },
+            { title: "Breaking the Habit of Being Yourself", url: "https://drive.google.com/file/d/1MKxecNmhsJN8LlxXJ2kIPOjfy0GUBLw8/view" },
+            { title: "Zig Ziglar's Secrets of Closing the Sale", url: "https://drive.google.com/file/d/1j0-ITIxQB3cjl-JbCbqC66Qe1iQSzuTq/view" },
+            { title: "Daring Greatly", url: "https://drive.google.com/file/d/1MzwSZQYv4d1b-hq2Ko-AmKD8bNf77bxx/view" },
+            { title: "Think Again", url: "https://drive.google.com/file/d/15t_RD4n7Yf2GR8Yzv6l0Cddvr8olfT4P/view" },
+            { title: "The Gifts of Imperfection", url: "https://drive.google.com/file/d/1nQzddJ6m42XJNGxoSSw00BUOrKwftPpH/view" },
+            { title: "The Essays of Warren Buffett", url: "https://drive.google.com/file/d/1lGrQ-Iu32k4-_q9X_O_KHc9qujfbIs49/view" },
+            { title: "Onward", url: "https://drive.google.com/file/d/1rfVsphPjQxB2PR3tcK1p2-9aaKyD_yuV/view" },
+            { title: "Why We Sleep", url: "https://drive.google.com/file/d/1sVkhfWHaXmnLc4bx0i7pC86uLc3GAYyb/view" },
+            { title: "Your Money or Your Life", url: "https://drive.google.com/file/d/1YDfC5rSX0kIhV4fTkQmfQFjwaZX7QGOO/view" },
+            { title: "Leadership and Self-Deception", url: "https://drive.google.com/file/d/1bUfnEDQF1Hh_TPNCjs_BSRd2wIAytmE6/view" },
+            { title: "The Subtle Art of Not Giving a F_ck", url: "https://drive.google.com/file/d/1vd0wD_1U6xnUzKVviRr8BQKO-CheTezm/view" },
+            { title: "The Intelligent Investor", url: "https://drive.google.com/file/d/1shJY0JiEUOHDWVn_Mf7XGT5a7_2pONfs/view" },
+            { title: "Hacking Growth", url: "https://drive.google.com/file/d/1C9Br5zf3eU8ZJeS9e-Kv-M24mOUva4zW/view" },
+            { title: "Ikigai", url: "https://drive.google.com/file/d/1gHwJ-xoObZBMXzaRiukJf23cZoGlIE3j/view" },
+            { title: "Elon Musk", url: "https://drive.google.com/file/d/1nBtYDJNMWEpW04HgZ8I-3j0rgAEDVEex/view" },
+            { title: "The Big Short", url: "https://drive.google.com/file/d/1vNJi1Tu5xDqbzyI0chELGiId42JGKdbW/view" },
+            { title: "Sway", url: "https://drive.google.com/file/d/1yE8pUhBlLiB-yF8BCVaivizcZ1mvlAUQ/view" },
+            { title: "The Happiness Advantage", url: "https://drive.google.com/file/d/1KNCOCq7Xj4zzilQLLomP2ptDTo1fhYb6/view" },
+            { title: "The Mysteries of Human Behavior", url: "https://drive.google.com/file/d/1c4ymWZSxUzZrJup3OdRDL3zLvNU0eA-U/view" },
+            { title: "The Person and The Situation", url: "https://drive.google.com/file/d/1pXV6O_KCOt0eBr6jKRvmnzL9kXZBLFFc/view" },
+            { title: "10X is easier than 2X", url: "https://drive.google.com/file/d/1q8PK5AQHEUqkp3AWu29JJKc5inks_DAB/view" },
+            { title: "The Art of Learning", url: "https://drive.google.com/file/d/1n3wD1mdSILFk7tNv9xs7Hwmo4c6Hr_CE/view" },
+            { title: "The Compound Effect", url: "https://drive.google.com/file/d/1LdujkheN28p92wSqBxOUajnvEIwI6z8F/view" },
+            { title: "The Art of Possibility", url: "https://drive.google.com/file/d/1jp5tSME5PdWkmFSNpIrpNB5Yblbq4hbN/view" },
+            { title: "Burn The Boats", url: "https://drive.google.com/file/d/1jQIEdcRd9VdXcJzYbXEguD1muXzlDuov/view" },
+            { title: "The Autobiography of Benjamin Franklin", url: "https://drive.google.com/file/d/1pkelKdf4t5LxZv6_-wxa6sE9RkWP41Vb/view" },
+            { title: "Bargaining for Advantage", url: "https://drive.google.com/file/d/18hLHN_Hg0nU6pirtimdt5W_BJxwotSLh/view" },
+            { title: "The Ultimate Sales Machine", url: "https://drive.google.com/file/d/1JOWgFlcw8pccIIYqeskoXVF6ZO84dYGc/view" },
+            { title: "Spin Selling", url: "https://drive.google.com/file/d/1foeDK4bvAC9zbGeqdM4548RHFUN-xnxw/view" },
+            { title: "The Essential Drucker", url: "https://drive.google.com/file/d/1W740icralJlWatJ_PsbEYARcOvz6RY2Q/view" },
+            { title: "The 38 Letters from J.D.Rockefeller to his son", url: "https://drive.google.com/file/d/1m4oQyxbpXRtEk6k6Q_-YV7r4eygkn5dp/view" },
+            { title: "Tribes", url: "https://drive.google.com/file/d/1uLcHm9tigazPCFsZiEA0nHXy331m45F-/view" },
+            { title: "Wooden on Leadership", url: "https://drive.google.com/file/d/1dJSMo8gOAHlrtDl0Ps-IdxI3DLR6j0V2/view" },
+            { title: "Switch", url: "https://drive.google.com/file/d/1VbE_P2-AB2GuBMmFgcu4im8PIQ2E1GF8/view" },
+            { title: "Dream Teams", url: "https://drive.google.com/file/d/1HjUdbfVk5MsUehYSfUcCHkvE-fyZOKf1/view" },
+            { title: "The Art of Profitability", url: "https://drive.google.com/file/d/1Q4c4Xq0lDycgkVLe-xMEcYlrWOxQAgel/view" },
+            { title: "Margin of Safety", url: "https://drive.google.com/file/d/1pCXMqC5dSH0Ri-oHcr4pcA8jMsBqsMDt/view" },
+            { title: "The Most Important Thing Illuminated", url: "https://drive.google.com/file/d/1fvaOsV978Gyy-5orPhp41fLZxJfXliHs/view" },
+            { title: "Before The Exit", url: "https://drive.google.com/file/d/1XhnOchUzNk214W_E2gkMBRJmIxbQDs6t/view" },
+            { title: "Ignore Everybody", url: "https://drive.google.com/file/d/1thUgmmZsuQ5x8TZjZh-tlJ1hSWh-TcA5/view" },
+            { title: "The Power of Fifty Bits", url: "https://drive.google.com/file/d/1qPuJTs2Uk5NcSGP8uziYTZtbg-RWJUdU/view" },
+            { title: "The Millionaire Fastlane", url: "https://drive.google.com/file/d/1rOoiu_9PgT_sBD9h3avaBXjjNzDNSoU_/view" },
+            { title: "Predictably Irrational", url: "https://drive.google.com/file/d/1OcKFDfUD4YJnxWIwWJ08Ix-xqZqaotav/view" },
+            { title: "Hooked", url: "https://drive.google.com/file/d/1_YQqU26OzIHkV5lBNa13DEJgdy7phe6r/view" },
+            { title: "Nudge", url: "https://drive.google.com/file/d/1LXn7QcUDUqND3-3uC4VapIyi3onA8YzM/view" },
+            { title: "Seeking Wisdom", url: "https://drive.google.com/file/d/1xTwdgCtWPIZUZoWcwVDkXK84LpA_KtyE/view" },
+            { title: "Poor Charlie's Almanack", url: "https://drive.google.com/file/d/1NnVBgI379BDOoQHmsl3-meWuAeMy-IhS/view" },
+            { title: "Leaders Eat Last", url: "https://drive.google.com/file/d/1mzQHFhWZ_l6cE3RMjZjtP6zwL6A2xY7Z/view" },
+            { title: "Influence: Science and Practice", url: "https://drive.google.com/file/d/1awo4jrAA_l6oD1IP6K60XlmzmcbdjSfQ/view" },
+            { title: "Losing My Virginity", url: "https://drive.google.com/file/d/1qjDzuJbOk0E4F1NAgML_iYOjo6v4F4-v/view" },
+            { title: "The Infinite Game", url: "https://drive.google.com/file/d/1eyybGGNo28oJbJPuRKG62O7T6Kcdbwrk/view" },
+            { title: "Fooled by Randomness", url: "https://drive.google.com/file/d/1eafziyBvgojhhBhp2EyYfFmOHOSV5_EA/view" },
+            { title: "Breakthrough Advertising", url: "https://drive.google.com/file/d/1chyFRR0kvd3gxlt26MuL6udM0AiD4Cl9/view" },
+            { title: "The Monk Who Sold His Ferrari", url: "https://drive.google.com/file/d/1ptLcRGKY0FaKiQaYWWWADINJl_u-Bb8t/view" },
+            { title: "The 5 AM Club", url: "https://drive.google.com/file/d/1gP2suqpHZTapuSotL0x3E9NmG18EMj2J/view" },
+            { title: "How to talk to anyone", url: "https://drive.google.com/file/d/1FRksv4Ienhn1QhQgDOam0nzuK-sMFd3H/view" },
+            { title: "The Unicorn Within", url: "https://drive.google.com/file/d/1fQWENw229d4yRgCA257Z1Up5Kfxgd7EP/view" },
+            { title: "The Founder's Mentality", url: "https://drive.google.com/file/d/1pJuOL31n_BkuKF4MEog2w-X2uJdQHs6U/view" },
+            { title: "The Mind of The Leader", url: "https://drive.google.com/file/d/1nXHs0Lge5zcMJXOL2Kf7T3eRJ6Ck1Csd/view" },
+            { title: "The First Rule of Mastery", url: "https://drive.google.com/file/d/1hhKhJjrAOgRuEzJW7FDf_rWOZXY4EUgC/view" },
+            { title: "Principles", url: "https://drive.google.com/file/d/1wuMLIXtYoOasRd3yiwjo8nvs2tXTrIea/view" },
+            { title: "Surrounded by Idiots", url: "https://drive.google.com/file/d/1zOSdCvzckasOPXs1zjdYw9HgEe8Uqonb/view" },
+            { title: "Simple Numbers, Straight Talk, Big Profit", url: "https://drive.google.com/file/d/1j0qEE-I_LONgpL0HXSNHuAEucXnqCiOd/view" },
+            { title: "The Power of Full Engagement", url: "https://drive.google.com/file/d/1MyVtmbcKrHokf8IRymB2ArWbzjSe1uMd/view" },
+            { title: "The 22 Immutable Laws of Marketing", url: "https://drive.google.com/file/d/1btz85Ew1XxPgyu6Qiv8MssIi85BqBZYg/view" },
+            { title: "What Got You Here Won't Get You There", url: "https://drive.google.com/file/d/1Q4gO6afRrMu-o2kqtqbFMYz7fZlP9zOW/view" },
+            { title: "The New New Thing", url: "https://drive.google.com/file/d/1xFw_bMdEuzQo6wQh0kIgNMDvPtalkf8E/view" },
+            { title: "Bossy Pants", url: "https://drive.google.com/file/d/1s8PTzcRzcXPqZXYnnMs3FKLOLcPC6jLQ/view" },
+            { title: "Not Fade Away", url: "https://drive.google.com/file/d/1XX4nYGpU0lTVWvt8mdl0CnQn3UeMo5yt/view" },
+            { title: "BANYAK ORANG MISKIN KARENA BODOH - Ft. ADYTHIA PRATAMA", url: "https://drive.google.com/file/d/1rnltKMRW0lvjViOQY4MZIsg-t0pH3q0y/view" },
+            { title: "Defending", url: "https://drive.google.com/file/d/10jDr0MOh36FNLaoTUFUAYAapWH6kzSF8/view" },
+            { title: "Fairclough-Norman-Critical-Discourse-Analysis", url: "https://drive.google.com/file/d/1TNeJ9DeQnb6kzd43YX4lnWB9GX7VMNG0/view" },
+            { title: "Bowen", url: "https://drive.google.com/file/d/1Ot8aqvDCx43JdtGVXVIUzq-mmqqDYOBE/view" },
+            { title: "53 Jurus Sakti Playboy", url: "https://drive.google.com/file/d/1P-_W2goeOhpWZhKtI_RPOmf4mgUkXXmZ/view" },
+            { title: "BrianTracy", url: "https://drive.google.com/file/d/10hBsugLvVKXWM6DBVPIjXSdy-8B8F1fS/view" }
         ];
 
-        function searchBooks() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const booksContainer = document.getElementById('booksContainer');
-            const noResults = document.getElementById('noResults');
-            
-            booksContainer.innerHTML = '';
-            let matchFound = false;
+        // Sort books alphabetically by title
+        books.sort((a, b) => a.title.localeCompare(b.title));
 
-            books.forEach(book => {
-                if (book.title.toLowerCase().includes(searchTerm)) {
-                    const bookElement = document.createElement('div');
-                    bookElement.className = 'book';
-                    bookElement.innerHTML = `
-                        <span>${book.title}</span>
-                        <a href="${book.url}" target="_blank">
-                            <button>Read</button>
-                        </a>
-                    `;
-                    booksContainer.appendChild(bookElement);
-                    matchFound = true;
-                }
-            });
+        // Render all books initially
+        function renderBooks(booksToRender) {
+            const container = document.getElementById('booksContainer');
+            container.innerHTML = '';
 
-            if (!matchFound && searchTerm !== '') {
-                noResults.style.display = 'block';
-            } else {
-                noResults.style.display = 'none';
-                if (searchTerm === '') {
-                    displayAllBooks();
-                }
+            if (booksToRender.length === 0) {
+                document.getElementById('noResults').style.display = 'block';
+                return;
             }
-        }
 
-        function displayAllBooks() {
-            const booksContainer = document.getElementById('booksContainer');
-            booksContainer.innerHTML = '';
+            document.getElementById('noResults').style.display = 'none';
 
-            books.forEach(book => {
-                const bookElement = document.createElement('div');
-                bookElement.className = 'book';
-                bookElement.innerHTML = `
+            booksToRender.forEach(book => {
+                const bookDiv = document.createElement('div');
+                bookDiv.className = 'book';
+                bookDiv.innerHTML = `
                     <span>${book.title}</span>
-                    <a href="${book.url}" target="_blank">
-                        <button>Read</button>
-                    </a>
+                    <button onclick="window.open('${book.url}', '_blank')">📖 Open</button>
                 `;
-                booksContainer.appendChild(bookElement);
+                container.appendChild(bookDiv);
             });
         }
 
-        // Display all books on page load
-        window.addEventListener('load', displayAllBooks);
+        // Search function
+        function searchBooks() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (searchInput === '') {
+                renderBooks(books);
+                return;
+            }
+
+            // Filter books based on search input
+            const filteredBooks = books.filter(book =>
+                book.title.toLowerCase().includes(searchInput)
+            );
+
+            renderBooks(filteredBooks);
+        }
+
+        // Initial render
+        renderBooks(books);
     </script>
 </body>
 </html>
